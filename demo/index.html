@@ -3,35 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HearMe — Behind every number is a human story waiting to be heard</title>
+  <title>HearMe — Don't just count the voices. Understand them.</title>
+  <meta name="description" content="HearMe turns human voices into meaningful insights — helping organizations understand not only what people say, but what they truly need.">
+  
+  <!-- Material 3 & High-End Editorial Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
+    /* ==========================================================================
+       MATERIAL 3 DESIGN SYSTEM TOKENS & FOUNDATIONS
+       Human × Data × Empathy
+       ========================================================================== */
     :root {
-      --bg-light: #faf9f6;
-      --bg-white: #ffffff;
-      --bg-subtle: #f4f2ee;
-      --bg-dark: #0f1115;
-      --text-dark: #1a1c20;
-      --text-muted: #5e6472;
-      --text-light: #f5f5f7;
-      --coral-accent: #e63946;
-      --coral-soft: #ff6b6b;
-      --coral-glow: rgba(230, 57, 70, 0.15);
-      --warm-amber: #d97706;
-      --border-subtle: rgba(0, 0, 0, 0.08);
-      --border-dark: rgba(255, 255, 255, 0.1);
-      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04);
-      --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.07);
-      --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.1);
+      --md-sys-color-primary: #a73728;
+      --md-sys-color-on-primary: #ffffff;
+      --md-sys-color-primary-container: #ffdad4;
+      --md-sys-color-on-primary-container: #3a0904;
+      
+      --md-sys-color-secondary: #775651;
+      --md-sys-color-tertiary: #6f5b2e;
+
+      --md-sys-color-background: #faf8f5;
+      --md-sys-color-on-background: #201a19;
+      --md-sys-color-surface: #faf8f5;
+      --md-sys-color-on-surface: #201a19;
+      
+      --md-sys-color-surface-container-lowest: #ffffff;
+      --md-sys-color-surface-container-low: #f4efed;
+      --md-sys-color-surface-container: #eee9e7;
+      --md-sys-color-surface-container-high: #e8e3e1;
+      --md-sys-color-surface-container-highest: #e3dedc;
+
+      --md-sys-color-on-surface-variant: #534341;
+      --md-sys-color-outline: #857370;
+      --md-sys-color-outline-variant: #d8c2be;
+
+      --md-sys-color-inverse-surface: #121010;
+      --md-sys-color-inverse-on-surface: #f5efee;
+
       --radius-sm: 8px;
       --radius-md: 16px;
       --radius-lg: 24px;
+      --radius-xl: 32px;
       --radius-full: 9999px;
+
+      --elevation-1: 0 1px 3px 1px rgba(32, 26, 25, 0.08), 0 1px 2px 0 rgba(32, 26, 25, 0.04);
+      --elevation-2: 0 4px 12px 2px rgba(32, 26, 25, 0.08), 0 2px 4px 0 rgba(32, 26, 25, 0.04);
+      --elevation-3: 0 12px 32px 4px rgba(32, 26, 25, 0.1), 0 4px 8px 0 rgba(32, 26, 25, 0.04);
+
+      --font-body: 'Manrope', -apple-system, sans-serif;
+      --font-display: 'Newsreader', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --transition-standard: 350ms cubic-bezier(0.2, 0, 0, 1);
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -39,82 +68,77 @@
 
     html {
       scroll-behavior: smooth;
+      font-size: 16px;
     }
 
     body {
-      background-color: var(--bg-light);
-      color: var(--text-dark);
-      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-      overflow-x: hidden;
+      background-color: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+      font-family: var(--font-body);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    /* Typography */
-    h1, h2, h3, .serif-font {
-      font-family: 'Lora', Georgia, serif;
+    /* Typography Utilities */
+    .display-hero {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw + 1rem, 5.5rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
     }
 
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 76px;
-      background: rgba(250, 249, 246, 0.85);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-subtle);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 3rem;
-      z-index: 1000;
-      transition: all 0.3s ease;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      text-decoration: none;
-      color: var(--text-dark);
-      font-weight: 700;
-      font-size: 1.35rem;
+    .display-section {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4.5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.15;
       letter-spacing: -0.02em;
     }
 
-    .brand .heart {
-      color: var(--coral-accent);
-      font-size: 1.4rem;
-      display: inline-block;
-      animation: heartbeat 2s infinite ease-in-out;
+    .body-large {
+      font-size: clamp(1.1rem, 1.2vw + 0.5rem, 1.35rem);
+      line-height: 1.65;
+      color: var(--md-sys-color-on-surface-variant);
     }
 
-    @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      14% { transform: scale(1.18); }
-      28% { transform: scale(1); }
-      42% { transform: scale(1.12); }
-      70% { transform: scale(1); }
-    }
-
-    .nav-links {
-      display: flex;
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--md-sys-color-primary);
+      display: inline-flex;
       align-items: center;
-      gap: 2rem;
+      gap: 8px;
+      margin-bottom: 1rem;
     }
 
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: color 0.2s;
+    .eyebrow::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--md-sys-color-primary);
     }
 
-    .nav-links a:hover {
-      color: var(--coral-accent);
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .container-editorial {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    section {
+      padding: clamp(5rem, 10vw, 8.5rem) 0;
+      position: relative;
     }
 
     /* Buttons */
@@ -122,1202 +146,1194 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
-      padding: 0.85rem 1.85rem;
+      gap: 8px;
+      min-height: 52px;
+      padding: 0 2rem;
       border-radius: var(--radius-full);
-      font-size: 0.95rem;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
       font-weight: 600;
+      letter-spacing: 0.02em;
       text-decoration: none;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
+      transition: all var(--transition-standard);
       border: 1px solid transparent;
     }
 
     .btn-primary {
-      background-color: var(--coral-accent);
-      color: #ffffff;
-      box-shadow: 0 8px 24px rgba(230, 57, 70, 0.25);
+      background-color: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      box-shadow: var(--elevation-1);
     }
 
     .btn-primary:hover {
-      background-color: #d62839;
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(230, 57, 70, 0.35);
-    }
-
-    .btn-secondary {
-      background-color: var(--bg-white);
-      color: var(--text-dark);
-      border-color: var(--border-subtle);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .btn-secondary:hover {
-      background-color: #f7f6f2;
-      border-color: rgba(0, 0, 0, 0.15);
+      background-color: #8c2a1e;
+      box-shadow: var(--elevation-2);
       transform: translateY(-2px);
     }
 
-    /* Hero Section */
-    .hero {
-      position: relative;
-      min-height: 92vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 9rem 1.5rem 5rem;
-      background: radial-gradient(circle at 50% 30%, rgba(255, 230, 230, 0.45) 0%, rgba(250, 249, 246, 0.95) 70%);
-      overflow: hidden;
+    .btn-tonal {
+      background-color: var(--md-sys-color-surface-container-high);
+      color: var(--md-sys-color-on-surface);
+      border-color: var(--md-sys-color-outline-variant);
     }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(230, 57, 70, 0.08);
-      color: var(--coral-accent);
-      padding: 0.45rem 1.1rem;
-      border-radius: var(--radius-full);
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 2rem;
-      border: 1px solid rgba(230, 57, 70, 0.18);
+    .btn-tonal:hover {
+      background-color: var(--md-sys-color-surface-container-highest);
+      transform: translateY(-2px);
     }
 
-    .hero-title {
-      font-size: 3.75rem;
-      font-weight: 600;
-      max-width: 900px;
-      line-height: 1.15;
-      letter-spacing: -0.025em;
-      margin-bottom: 1.5rem;
-      color: var(--text-dark);
-    }
-
-    .hero-subtitle {
-      font-size: 1.25rem;
-      color: var(--text-muted);
-      max-width: 680px;
-      line-height: 1.6;
-      margin-bottom: 2.75rem;
-      font-weight: 400;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 4rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    /* Interactive Data-to-Human Transformation Canvas/Visual */
-    .hero-visual-container {
-      position: relative;
-      width: 100%;
-      max-width: 780px;
-      height: 380px;
-      margin: 0 auto;
-      border-radius: var(--radius-lg);
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-lg);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    canvas#particleCanvas {
-      position: absolute;
+    /* App Bar */
+    .app-bar {
+      position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      right: 0;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 1000;
+      background-color: rgba(250, 248, 245, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+      transition: all var(--transition-standard);
     }
 
-    .visual-message-overlay {
-      position: absolute;
-      bottom: 24px;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(8px);
-      padding: 0.6rem 1.4rem;
-      border-radius: var(--radius-full);
-      border: 1px solid var(--border-subtle);
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      font-weight: 500;
-      pointer-events: none;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .visual-message-overlay b {
-      color: var(--coral-accent);
-    }
-
-    /* Section Styling */
-    section {
-      padding: 7rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-eyebrow {
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      color: var(--coral-accent);
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--md-sys-color-on-surface);
       font-weight: 700;
-      margin-bottom: 0.75rem;
+      font-size: 1.125rem;
     }
 
-    .section-heading {
-      font-size: 2.6rem;
-      line-height: 1.25;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
+    .brand-heart {
+      color: var(--md-sys-color-primary);
+      font-size: 1.3rem;
     }
 
-    .section-desc {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      max-width: 650px;
-      line-height: 1.6;
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
     }
 
-    /* The Problem Section */
-    .problem-section {
-      text-align: center;
+    .nav-menu a {
+      text-decoration: none;
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-menu a:hover {
+      color: var(--md-sys-color-primary);
+    }
+
+    /* Storyboard Walkthrough Quick Player in Nav */
+    .story-walkthrough-btn {
+      background: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      border: 1px solid rgba(167, 55, 40, 0.3);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .story-walkthrough-btn:hover {
+      background: var(--md-sys-color-primary);
+      color: #fff;
+    }
+
+    /* ==========================================================================
+       01 — OPENING / 0–5 detik (The Human Face & Voices)
+       ========================================================================== */
+    .hero-section {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      padding-top: calc(76px + 2rem);
+      padding-bottom: 4rem;
+      background: radial-gradient(circle at 50% 28%, #fff4f1 0%, var(--md-sys-color-background) 72%);
+      overflow: hidden;
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 980px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .hero-visual-frame {
+      width: 100%;
+      max-width: 980px;
+      height: 480px;
+      margin: 0 auto;
+      position: relative;
+      border-radius: var(--radius-xl);
+      background: #ffffff;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      box-shadow: var(--elevation-2);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .voice-fragment-bubble {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--md-sys-color-outline-variant);
+      padding: 10px 18px;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--md-sys-color-on-surface);
+      box-shadow: var(--elevation-1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: floatVoice 5s ease-in-out infinite;
+      backdrop-filter: blur(8px);
+    }
+
+    .voice-fragment-bubble .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--md-sys-color-primary);
+      box-shadow: 0 0 6px rgba(167, 55, 40, 0.5);
+    }
+
+    .vf-1 { top: 16%; left: 8%; animation-delay: 0s; }
+    .vf-2 { top: 24%; right: 9%; animation-delay: 1.4s; }
+    .vf-3 { bottom: 20%; left: 11%; animation-delay: 2.8s; }
+    .vf-4 { bottom: 25%; right: 10%; animation-delay: 4.1s; }
+
+    @keyframes floatVoice {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ==========================================================================
+       02 — THE PROBLEM / 5–15 detik (Reduction & The Zoom Hook)
+       ========================================================================== */
+    .problem-section {
+      background-color: var(--md-sys-color-surface-container-low);
+      border-top: 1px solid var(--md-sys-color-outline-variant);
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+      text-align: center;
+    }
+
+    .data-reduction-pipeline {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 3.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .pipeline-step-box {
+      background: #ffffff;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      padding: 1.25rem 2rem;
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: var(--elevation-1);
+    }
+
+    .pipeline-arrow {
+      color: var(--md-sys-color-outline);
+      font-size: 1.25rem;
+    }
+
+    .hook-zoom-card {
+      background: #ffffff;
+      border: 2px solid var(--md-sys-color-primary);
+      border-radius: var(--radius-lg);
+      padding: 3rem 2.5rem;
+      max-width: 740px;
+      margin: 2.5rem auto 0;
+      box-shadow: var(--elevation-3);
+      text-align: center;
+    }
+
+    .hook-zoom-quote {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      font-style: italic;
+      color: var(--md-sys-color-primary);
+      margin: 1rem 0;
+    }
+
+    /* ==========================================================================
+       03 — CHANGE THE QUESTION / 15–25 detik (Interactive Side-by-Side)
+       ========================================================================== */
+    .reframing-container {
+      margin-top: 3.5rem;
+      background: #ffffff;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      border-radius: var(--radius-xl);
+      padding: 3rem;
+      box-shadow: var(--elevation-2);
+    }
+
+    .reframe-case-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
       align-items: center;
     }
 
-    .stats-trio {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      width: 100%;
-      margin: 3.5rem 0 3rem;
+    .reframe-case-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
     }
 
-    .stat-card {
-      background: var(--bg-white);
-      border: 1px solid var(--border-subtle);
-      padding: 2.25rem 1.5rem;
+    .reframe-old-side {
+      background: #f0eeeb;
+      padding: 1.5rem;
       border-radius: var(--radius-md);
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.25s ease;
+      border: 1px solid var(--md-sys-color-outline-variant);
     }
 
-    .stat-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .stat-number {
-      font-size: 2.75rem;
-      font-weight: 800;
-      color: var(--coral-accent);
-      letter-spacing: -0.03em;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .problem-reveal {
-      max-width: 720px;
-      font-size: 1.25rem;
-      line-height: 1.8;
-      color: var(--text-dark);
-      background: rgba(230, 57, 70, 0.03);
-      padding: 2.5rem;
+    .reframe-new-side {
+      background: #fff8f6;
+      padding: 1.5rem;
       border-radius: var(--radius-md);
-      border-left: 4px solid var(--coral-accent);
-      text-align: left;
+      border: 2px solid var(--md-sys-color-primary);
     }
 
-    .problem-reveal p {
-      margin-bottom: 1rem;
-    }
-
-    .problem-reveal p:last-child {
-      margin-bottom: 0;
-      font-weight: 600;
-      color: var(--coral-accent);
-    }
-
-    /* The Insight Section */
-    .insight-card {
-      background: linear-gradient(145deg, #ffffff, #fdfbf7);
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      border-radius: var(--radius-lg);
-      padding: 4.5rem 3.5rem;
-      box-shadow: var(--shadow-md);
-      text-align: center;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-
-    .quote-box {
-      font-size: 1.9rem;
-      font-style: italic;
-      line-height: 1.45;
-      color: var(--text-dark);
-      margin: 2rem 0;
-      font-family: 'Lora', serif;
-    }
-
-    /* How HearMe Works (Step Flow) */
-    .steps-grid {
+    /* ==========================================================================
+       04 — HOW IT WORKS / 25–40 detik (Voice Journey Timeline)
+       ========================================================================== */
+    .journey-timeline-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1.5rem;
       margin-top: 3.5rem;
     }
 
-    .step-card {
-      background: var(--bg-white);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
+    .journey-card {
+      background: #ffffff;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      border-radius: var(--radius-lg);
       padding: 2rem 1.5rem;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-      transition: all 0.25s ease;
+      box-shadow: var(--elevation-1);
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition-standard);
     }
 
-    .step-card:hover {
-      border-color: var(--coral-soft);
+    .journey-card:hover {
+      border-color: var(--md-sys-color-primary);
       transform: translateY(-4px);
     }
 
-    .step-num {
+    .journey-step-num {
+      font-family: var(--font-mono);
       font-size: 0.85rem;
       font-weight: 700;
-      color: var(--coral-accent);
-      margin-bottom: 0.85rem;
-      letter-spacing: 0.05em;
-    }
-
-    .step-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 0.85rem;
-      letter-spacing: -0.01em;
-    }
-
-    .step-body {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .step-pill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 1rem;
-    }
-
-    .step-pill {
-      font-size: 0.75rem;
-      background: var(--bg-subtle);
-      padding: 0.2rem 0.6rem;
-      border-radius: var(--radius-full);
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    /* Before vs With HearMe (Visual Comparison) */
-    .comparison-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .comparison-col {
-      border-radius: var(--radius-lg);
-      padding: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--shadow-md);
-    }
-
-    .col-before {
-      background: #f1f1f3;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-    }
-
-    .col-with {
-      background: #ffffff;
-      border: 2px solid var(--coral-accent);
-      position: relative;
-    }
-
-    .badge-pill {
-      align-self: flex-start;
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 0.35rem 0.85rem;
-      border-radius: var(--radius-full);
-      margin-bottom: 1.25rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .badge-before { background: #e2e4e9; color: #475467; }
-    .badge-with { background: rgba(230, 57, 70, 0.1); color: var(--coral-accent); }
-
-    .pipeline-nodes {
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-      margin-top: 1.5rem;
-    }
-
-    .pipeline-node {
-      background: #ffffff;
-      padding: 1rem 1.25rem;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border-subtle);
-      font-size: 0.9rem;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .col-with .pipeline-node {
-      background: #fdfbfb;
-      border-color: rgba(230, 57, 70, 0.18);
-    }
-
-    .arrow-down {
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 1.1rem;
-    }
-
-    /* The Heart of HearMe (Interactive Empathy Stories) */
-    .voices-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.75rem;
-      margin-top: 3rem;
-    }
-
-    .voice-card {
-      background: var(--bg-white);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 2rem;
-      box-shadow: var(--shadow-sm);
-      cursor: pointer;
-      transition: all 0.25s ease;
-      position: relative;
-    }
-
-    .voice-card:hover, .voice-card.active {
-      border-color: var(--coral-accent);
-      box-shadow: 0 16px 36px rgba(230, 57, 70, 0.08);
-      transform: translateY(-3px);
-    }
-
-    .voice-role {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--coral-accent);
+      color: var(--md-sys-color-primary);
       margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
     }
 
-    .voice-quote {
-      font-family: 'Lora', serif;
-      font-size: 1.15rem;
-      font-style: italic;
-      color: var(--text-dark);
-      margin-bottom: 1rem;
+    .journey-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .journey-lead {
+      font-weight: 600;
+      color: var(--md-sys-color-primary);
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .journey-body {
+      font-size: 0.9rem;
+      color: var(--md-sys-color-on-surface-variant);
       line-height: 1.5;
     }
 
-    .voice-meta {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      border-top: 1px dashed var(--border-subtle);
-      padding-top: 0.75rem;
-      display: flex;
-      justify-content: space-between;
+    /* ==========================================================================
+       05 — THE HEART / 40–55 detik (Emotional Dark Room)
+       ========================================================================== */
+    .heart-deep-section {
+      background-color: var(--md-sys-color-inverse-surface);
+      color: var(--md-sys-color-inverse-on-surface);
+      padding: 7rem 0;
+      text-align: center;
     }
 
-    /* A Different Kind of Dashboard (Interactive Comparison Tool) */
-    .dashboard-interactive-section {
-      background: var(--bg-white);
-      border: 1px solid var(--border-subtle);
+    .stories-solemn-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.75rem;
+      margin-top: 3.5rem;
+      text-align: left;
+    }
+
+    .solemn-story-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: var(--radius-lg);
-      padding: 3.5rem;
-      box-shadow: var(--shadow-md);
-      margin-top: 4rem;
+      padding: 2.25rem;
+      transition: all var(--transition-standard);
     }
 
-    .comparison-tabs {
-      display: flex;
-      gap: 1rem;
-      margin: 2rem 0;
-      justify-content: center;
+    .solemn-story-card:hover {
+      border-color: #ffb4a8;
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-3px);
     }
 
-    .tab-btn {
-      padding: 0.65rem 1.35rem;
-      border-radius: var(--radius-full);
-      border: 1px solid var(--border-subtle);
-      background: var(--bg-subtle);
-      font-size: 0.9rem;
+    .story-character-title {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #ffb4a8;
+      margin-bottom: 0.75rem;
       font-weight: 600;
-      color: var(--text-muted);
+    }
+
+    .story-character-quote {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-style: italic;
+      color: #ffffff;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    /* ==========================================================================
+       06 — AI WITH HUMANITY / 55–65 detik
+       ========================================================================== */
+    .ai-penta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .ai-card {
+      background: #ffffff;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--elevation-1);
+    }
+
+    /* ==========================================================================
+       07 — IMPACT / 65–75 detik
+       ========================================================================== */
+    .impact-quad-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .impact-card {
+      background: #ffffff;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.5rem;
+      box-shadow: var(--elevation-1);
+    }
+
+    .impact-word {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--md-sys-color-primary);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ==========================================================================
+       08 — SIGNATURE VISUAL / 75–85 detik
+       ========================================================================== */
+    .signature-interactive-box {
+      background: #ffffff;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      margin-top: 3.5rem;
+      box-shadow: var(--elevation-2);
+    }
+
+    .state-toggle-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .state-pill {
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--md-sys-color-outline-variant);
+      background: var(--md-sys-color-surface-container);
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
       cursor: pointer;
       transition: all 0.2s;
     }
 
-    .tab-btn.active {
-      background: var(--coral-accent);
+    .state-pill.active {
+      background: var(--md-sys-color-primary);
       color: #ffffff;
-      border-color: var(--coral-accent);
+      border-color: var(--md-sys-color-primary);
     }
 
-    .dashboard-diff-box {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      background: var(--bg-subtle);
-      padding: 2rem;
+    #sigCanvas {
+      width: 100%;
+      height: 420px;
       border-radius: var(--radius-md);
-      border: 1px solid var(--border-subtle);
+      background: #faf8f5;
+      display: block;
     }
 
-    .dash-side {
-      background: #ffffff;
-      padding: 1.75rem;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border-subtle);
-    }
-
-    .dash-side-title {
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 1rem;
-    }
-
-    .title-old { color: #64748b; }
-    .title-new { color: var(--coral-accent); }
-
-    .dash-content-display {
-      font-size: 1.15rem;
-      line-height: 1.6;
-    }
-
-    /* AI Technology Features */
-    .tech-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-
-    .tech-card {
-      background: var(--bg-white);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 2rem;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.2s;
-    }
-
-    .tech-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .tech-icon {
-      width: 44px;
-      height: 44px;
-      background: rgba(230, 57, 70, 0.08);
-      color: var(--coral-accent);
-      border-radius: 12px;
+    /* ==========================================================================
+       09 — FINAL EMOTIONAL MOMENT / 85–95 detik
+       ========================================================================== */
+    .cinematic-dark-sanctuary {
+      background-color: #0b0909;
+      color: #ffffff;
+      min-height: 85vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .tech-card h4 {
-      font-size: 1.15rem;
-      margin-bottom: 0.5rem;
-      font-weight: 700;
-    }
-
-    .tech-card p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* Impact Grid */
-    .impact-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-
-    .impact-card {
-      background: var(--bg-white);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 2rem 1.5rem;
       text-align: center;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .impact-card h4 {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-      font-weight: 700;
-    }
-
-    .impact-card p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    /* Final Emotional Section (Dark Mode) */
-    .final-emotional-section {
-      background-color: var(--bg-dark);
-      color: var(--text-light);
-      padding: 9rem 2rem;
-      text-align: center;
+      padding: 6rem 1.5rem;
       position: relative;
-      overflow: hidden;
     }
 
-    .final-emotional-section::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(230, 57, 70, 0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .dark-main-statement {
-      font-size: 3.5rem;
-      font-weight: 500;
-      line-height: 1.2;
-      max-width: 850px;
-      margin: 0 auto 2.5rem;
-      letter-spacing: -0.02em;
-    }
-
-    .dark-sub-statement {
-      font-size: 1.5rem;
-      color: #94a3b8;
-      font-family: 'Lora', serif;
-      font-style: italic;
-      margin-bottom: 3.5rem;
-      line-height: 1.6;
-    }
-
-    .dark-cta-btn {
-      background: var(--coral-accent);
-      color: #ffffff;
-      padding: 1.1rem 2.8rem;
-      font-size: 1.05rem;
-      border-radius: var(--radius-full);
-      text-decoration: none;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.65rem;
-      box-shadow: 0 10px 30px rgba(230, 57, 70, 0.4);
-      transition: all 0.25s ease;
-    }
-
-    .dark-cta-btn:hover {
-      background: #ff5252;
-      transform: scale(1.04);
-      box-shadow: 0 15px 40px rgba(230, 57, 70, 0.6);
-    }
-
-    /* Footer */
-    footer {
-      background: #090a0d;
-      border-top: 1px solid var(--border-dark);
-      color: #94a3b8;
-      padding: 4rem 2rem 3rem;
-      text-align: center;
-    }
-
-    .footer-brand {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-tagline {
-      font-size: 0.95rem;
+    .cinematic-hero-quote {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 5.5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.15;
       margin-bottom: 2rem;
+    }
+
+    .cinematic-hero-sub {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2vw, 1.75rem);
+      font-style: italic;
+      color: #beb8b6;
+      margin-bottom: 3rem;
+    }
+
+    /* 10 — ENDING / FOOTER */
+    footer {
+      background: #000000;
+      color: #8c8583;
+      padding: 4rem 0 2.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
     }
 
     .footer-links {
       display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2.5rem;
+      gap: 1.5rem;
+      list-style: none;
       flex-wrap: wrap;
     }
 
     .footer-links a {
-      color: #94a3b8;
+      color: #beb8b6;
       text-decoration: none;
       font-size: 0.9rem;
-      transition: color 0.2s;
     }
 
-    .footer-links a:hover {
-      color: var(--coral-accent);
-    }
-
-    .copyright {
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
       font-size: 0.8rem;
-      color: #475569;
+      color: #635754;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
-    /* Responsive */
     @media (max-width: 900px) {
-      nav { padding: 0 1.5rem; }
-      .hero-title { font-size: 2.6rem; }
-      .stats-trio, .steps-grid, .comparison-wrapper, .voices-grid, .tech-grid, .impact-grid, .dashboard-diff-box {
+      .journey-timeline-grid, .impact-quad-grid, .stories-solemn-grid, .reframe-case-row {
         grid-template-columns: 1fr;
       }
-      .dark-main-statement { font-size: 2.3rem; }
-      .quote-box { font-size: 1.4rem; }
-      .insight-card { padding: 2.5rem 1.5rem; }
+      .nav-menu { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav>
-    <a href="#" class="brand">
-      <span class="heart">❤️</span>
+  <!-- App Bar -->
+  <header class="app-bar">
+    <a href="#" class="brand-group">
+      <span class="brand-heart">♥</span>
       <span>HearMe</span>
     </a>
-    <div class="nav-links">
-      <a href="#problem">The Problem</a>
-      <a href="#how-it-works">How It Works</a>
-      <a href="#voices">Stories</a>
-      <a href="#dashboard">Dashboard</a>
-      <a href="#technology">Technology</a>
-    </div>
-    <a href="#listening" class="btn btn-primary" style="padding: 0.65rem 1.4rem; font-size: 0.85rem;">
-      Start Listening
-    </a>
-  </nav>
 
-  <!-- Hero Section -->
-  <header class="hero">
-    <div class="hero-badge">
-      <span>✨ VedaThon 2026 Innovation</span>
-    </div>
+    <nav aria-label="Quick Storyboard Navigation">
+      <ul class="nav-menu">
+        <li><a href="#opening">Opening</a></li>
+        <li><a href="#problem">The Problem</a></li>
+        <li><a href="#reframe">Change the Question</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#the-heart">The Heart</a></li>
+        <li><a href="#signature-visual">Signature Visual</a></li>
+      </ul>
+    </nav>
 
-    <h1 class="hero-title">
-      Behind every number is a human story waiting to be heard.
-    </h1>
-
-    <p class="hero-subtitle">
-      HearMe turns human voices into meaningful insights — helping organizations understand not only what people say, but what they truly need.
-    </p>
-
-    <div class="hero-cta">
-      <a href="#voices" class="btn btn-primary">Hear the Stories</a>
-      <a href="#how-it-works" class="btn btn-secondary">Explore How It Works</a>
-    </div>
-
-    <!-- Visual Canvas Concept -->
-    <div class="hero-visual-container">
-      <canvas id="particleCanvas"></canvas>
-      <div class="visual-message-overlay">
-        Data tells us <b>what</b> is happening. People tell us <b>why</b>.
-      </div>
-    </div>
-  </header>
-
-  <!-- The Problem -->
-  <section id="problem" class="problem-section">
-    <div class="section-eyebrow">The Problem</div>
-    <h2 class="section-heading">
-      We have more data than ever.<br>But are we really listening?
-    </h2>
-    <p class="section-desc">
-      Every day, millions of opinions, complaints, experiences, and emotions become cold numbers on corporate dashboards.
-    </p>
-
-    <div class="stats-trio">
-      <div class="stat-card">
-        <div class="stat-number">1,000+</div>
-        <div class="stat-label">Survey responses collected</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">50,000</div>
-        <div class="stat-label">Comments filed away in spreadsheets</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">Millions</div>
-        <div class="stat-label">Of detached data points</div>
-      </div>
-    </div>
-
-    <div class="problem-reveal">
-      <p><b>But behind every number... there is a person.</b></p>
-      <p>Someone who is struggling.</p>
-      <p>Someone who needs help.</p>
-      <p>Someone whose voice may never reach the people making decisions.</p>
-    </div>
-  </section>
-
-  <!-- The Insight -->
-  <section id="insight">
-    <div class="insight-card">
-      <div class="section-eyebrow">The Insight</div>
-      <h2 class="section-heading">
-        Numbers can measure a problem.<br>Stories help us understand it.
-      </h2>
-      <div class="quote-box">
-        “Technology should not make people feel like data.<br>Technology should help people feel heard.”
-      </div>
-      <p class="section-desc" style="margin: 0 auto;">
-        HearMe was created from this simple belief. Our AI analyzes human-generated information and transforms complex voices into insights that people can understand and act upon with genuine empathy.
-      </p>
-    </div>
-  </section>
-
-  <!-- How HearMe Works -->
-  <section id="how-it-works">
-    <div style="text-align: center; max-width: 700px; margin: 0 auto;">
-      <div class="section-eyebrow">Methodology</div>
-      <h2 class="section-heading">How HearMe Works</h2>
-      <p class="section-desc" style="margin: 0 auto;">
-        From fragmented inputs into compassionate, structured clarity.
-      </p>
-    </div>
-
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-num">01 — LISTEN</div>
-        <h3 class="step-title">Listen</h3>
-        <p class="step-body">
-          HearMe collects human voices from relevant sources across channels.
-        </p>
-        <div class="step-pill-list">
-          <span class="step-pill">Comments</span>
-          <span class="step-pill">Feedback</span>
-          <span class="step-pill">Reports</span>
-          <span class="step-pill">Stories</span>
-        </div>
-      </div>
-
-      <div class="step-card">
-        <div class="step-num">02 — UNDERSTAND</div>
-        <h3 class="step-title">Understand</h3>
-        <p class="step-body">
-          AI identifies patterns, deep themes, emotional sentiment, unspoken concerns, and emerging critical issues.
-        </p>
-        <div class="step-pill-list">
-          <span class="step-pill">Emotions</span>
-          <span class="step-pill">Nuance</span>
-          <span class="step-pill">Context</span>
-        </div>
-      </div>
-
-      <div class="step-card">
-        <div class="step-num">03 — CONNECT</div>
-        <h3 class="step-title">Connect the Dots</h3>
-        <p class="step-body">
-          Thousands of individual voices become meaningful patterns without losing the human context.
-        </p>
-        <div class="step-pill-list">
-          <span class="step-pill">Archetypes</span>
-          <span class="step-pill">Syntheses</span>
-        </div>
-      </div>
-
-      <div class="step-card">
-        <div class="step-num">04 — ACT</div>
-        <h3 class="step-title">Take Action</h3>
-        <p class="step-body">
-          Organizations receive insights that help them make better, faster, and more human-centered decisions.
-        </p>
-        <div class="step-pill-list">
-          <span class="step-pill">Policy</span>
-          <span class="step-pill">Solutions</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Comparison: From Data to Human Insight -->
-    <div style="margin-top: 5.5rem;">
-      <div style="text-align: center; margin-bottom: 2rem;">
-        <h3 style="font-size: 2rem; letter-spacing: -0.02em;">From Data to Human Insight</h3>
-        <p style="color: var(--text-muted);">See how HearMe fundamentally reframes the workflow.</p>
-      </div>
-
-      <div class="comparison-wrapper">
-        <div class="comparison-col col-before">
-          <span class="badge-pill badge-before">Before HearMe</span>
-          <h4 style="font-size: 1.35rem; margin-bottom: 0.5rem;">50,000 COMMENTS</h4>
-          <p style="font-size: 0.9rem; color: var(--text-muted);">Detached, numeric aggregation that loses context.</p>
-
-          <div class="pipeline-nodes">
-            <div class="pipeline-node"><span>Raw Comments</span> <span>📄</span></div>
-            <div class="arrow-down">↓</div>
-            <div class="pipeline-node"><span>Spreadsheet Dump</span> <span>📊</span></div>
-            <div class="arrow-down">↓</div>
-            <div class="pipeline-node"><span>Generic Charts</span> <span>📈</span></div>
-            <div class="arrow-down">↓</div>
-            <div class="pipeline-node"><span>Impersonal Dashboard</span> <span>🖥️</span></div>
-            <div class="arrow-down">↓</div>
-            <div class="pipeline-node" style="background:#fee2e2; border-color:#fca5a5; font-weight:600; color:#991b1b;">
-              <span>“What does this actually mean?”</span> <span>❓</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="comparison-col col-with">
-          <span class="badge-pill badge-with">With HearMe</span>
-          <h4 style="font-size: 1.35rem; margin-bottom: 0.5rem;">50,000 HUMAN VOICES</h4>
-          <p style="font-size: 0.9rem; color: var(--coral-accent); font-weight: 500;">Context-aware, narrative synthesis.</p>
-
-          <div class="pipeline-nodes">
-            <div class="pipeline-node"><span>50,000 Human Voices</span> <span>🗣️</span></div>
-            <div class="arrow-down">↓</div>
-            <div class="pipeline-node"><span>Empathetic AI Core</span> <span>🤖</span></div>
-            <div class="arrow-down">↓</div>
-            <div class="pipeline-node"><span>Patterns + Emotions + Themes</span> <span>✨</span></div>
-            <div class="arrow-down">↓</div>
-            <div class="pipeline-node"><span>Human Stories Unlocked</span> <span>📖</span></div>
-            <div class="arrow-down">↓</div>
-            <div class="pipeline-node" style="background:#fef2f2; border-color:var(--coral-accent); font-weight:700; color:var(--coral-accent);">
-              <span>Actionable, Human Insight</span> <span>🎯</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- The Heart of HearMe -->
-  <section id="voices">
-    <div style="text-align: center; max-width: 720px; margin: 0 auto;">
-      <div class="section-eyebrow">The Heart of HearMe</div>
-      <h2 class="section-heading">Every voice matters.</h2>
-      <p class="section-desc" style="margin: 0 auto;">
-        A negative comment isn't just a negative score.<br>
-        A complaint isn't just another ticket.<br>
-        A statistic isn't just another number.
-      </p>
-    </div>
-
-    <div class="voices-grid">
-      <div class="voice-card active">
-        <div class="voice-role">A mother worried about her child</div>
-        <div class="voice-quote">
-          “I have waited for 3 weeks just to get verification for my toddler’s nutrition assistance program. Every morning I refresh the app with trembling hands.”
-        </div>
-        <div class="voice-meta">
-          <span>Old Label: <b>Ticket #8210 (Closed)</b></span>
-          <span style="color:var(--coral-accent); font-weight:600;">HearMe: Urgent Family Need</span>
-        </div>
-      </div>
-
-      <div class="voice-card">
-        <div class="voice-role">A student afraid to speak</div>
-        <div class="voice-quote">
-          “The digital exam portal kept freezing during finals. When I reported it, the support replied with an automated FAQ. I cried in my dorm room.”
-        </div>
-        <div class="voice-meta">
-          <span>Old Label: <b>CSAT: 1.0 (Bug)</b></span>
-          <span style="color:var(--coral-accent); font-weight:600;">HearMe: Exam Anxiety & Portal Block</span>
-        </div>
-      </div>
-
-      <div class="voice-card">
-        <div class="voice-role">A worker struggling to be heard</div>
-        <div class="voice-quote">
-          “The new shift scheduling software assigns back-to-back night shifts without 8 hours of rest. We feel like gears in a clock, not human beings.”
-        </div>
-        <div class="voice-meta">
-          <span>Old Label: <b>Feedback category: HR</b></span>
-          <span style="color:var(--coral-accent); font-weight:600;">HearMe: Worker Fatigue & Safety Risk</span>
-        </div>
-      </div>
-
-      <div class="voice-card">
-        <div class="voice-role">A community asking for change</div>
-        <div class="voice-quote">
-          “Our streetlights on Jl. Melati have been broken for six months. Daughters and elderly neighbors walk in pitch darkness every single evening.”
-        </div>
-        <div class="voice-meta">
-          <span>Old Label: <b>Public Works: Low Priority</b></span>
-          <span style="color:var(--coral-accent); font-weight:600;">HearMe: Public Safety Crisis</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- A Different Kind of Dashboard -->
-  <section id="dashboard">
-    <div style="text-align: center; max-width: 720px; margin: 0 auto;">
-      <div class="section-eyebrow">Interactive Comparison</div>
-      <h2 class="section-heading">A Different Kind of Dashboard</h2>
-      <p class="section-desc" style="margin: 0 auto;">
-        See how HearMe fundamentally shifts the question from detached statistics to human experience.
-      </p>
-    </div>
-
-    <div class="dashboard-interactive-section">
-      <div class="comparison-tabs">
-        <button class="tab-btn active" onclick="switchDashboardDemo(0)">Sentiment Analysis</button>
-        <button class="tab-btn" onclick="switchDashboardDemo(1)">Category Tagging</button>
-        <button class="tab-btn" onclick="switchDashboardDemo(2)">Volume Aggregation</button>
-      </div>
-
-      <div class="dashboard-diff-box">
-        <div class="dash-side">
-          <div class="dash-side-title title-old">Conventional Dashboard</div>
-          <div class="dash-content-display" id="dash-old">
-            <div style="font-size: 2.2rem; font-weight: 700; color: #dc2626;">62% Negative</div>
-            <div style="color: #64748b; font-size: 0.9rem; margin-top: 0.5rem;">
-              Label: Unfavorable sentiment score based on keyword frequency.
-            </div>
-          </div>
-        </div>
-
-        <div class="dash-side" style="border-color: rgba(230, 57, 70, 0.3); background: #fffcfc;">
-          <div class="dash-side-title title-new">HearMe Human-Centered Insight</div>
-          <div class="dash-content-display" id="dash-new">
-            <div style="font-family: 'Lora', serif; font-size: 1.35rem; color: var(--coral-accent); font-weight: 600;">
-              “Why are people feeling this way?”
-            </div>
-            <div style="color: var(--text-dark); font-size: 0.95rem; margin-top: 0.75rem; line-height: 1.5;">
-              84% of frustrated citizens are experiencing repeated application timeouts right when entering their family verification documents. The anger stems from <b>fear of missing deadlines</b>, not dislike of the policy itself.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- AI With Humanity at the Center -->
-  <section id="technology">
-    <div style="text-align: center; max-width: 700px; margin: 0 auto;">
-      <div class="section-eyebrow">AI Architecture</div>
-      <h2 class="section-heading">AI With Humanity at the Center</h2>
-      <p class="section-desc" style="margin: 0 auto;">
-        HearMe combines cutting-edge AI technologies, calibrated to preserve empathy rather than strip it away.
-      </p>
-    </div>
-
-    <div class="tech-grid">
-      <div class="tech-card">
-        <div class="tech-icon">🧠</div>
-        <h4>Natural Language Processing</h4>
-        <p>Understand what people are genuinely saying, including local idioms, informal expressions, and subtle emotional cues.</p>
-      </div>
-
-      <div class="tech-card">
-        <div class="tech-icon">❤️</div>
-        <h4>Sentiment & Emotion Analysis</h4>
-        <p>Identify multi-dimensional emotional signals (fear, hope, fatigue, resolve) rather than blunt positive/negative flags.</p>
-      </div>
-
-      <div class="tech-card">
-        <div class="tech-icon">🔍</div>
-        <h4>Topic & Theme Detection</h4>
-        <p>Discover what people are really talking about beneath the surface complaints.</p>
-      </div>
-
-      <div class="tech-card">
-        <div class="tech-icon">📝</div>
-        <h4>AI Summarization</h4>
-        <p>Condense 50,000+ scattered voices into structured, executive-ready insights without erasing individual stories.</p>
-      </div>
-
-      <div class="tech-card">
-        <div class="tech-icon">🤝</div>
-        <h4>Human-Centered Interpretation</h4>
-        <p>Keep the human context alive behind every data point, bridging citizens directly to leadership.</p>
-      </div>
-
-      <div class="tech-card">
-        <div class="tech-icon">🛡️</div>
-        <h4>Privacy & PII Protection</h4>
-        <p>Automatic anonymization scrubs personal identifiers so vulnerability can be heard safely.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Impact Section -->
-  <section id="impact">
-    <div style="text-align: center; max-width: 700px; margin: 0 auto;">
-      <div class="section-eyebrow">Impact</div>
-      <h2 class="section-heading">What happens when people are truly heard?</h2>
-      <p class="section-desc" style="margin: 0 auto;">
-        Real transformation occurs when empathy guides institutional action.
-      </p>
-    </div>
-
-    <div class="impact-grid">
-      <div class="impact-card">
-        <h4>Better Decisions</h4>
-        <p>Decisions grounded directly in genuine human experiences rather than dry assumptions.</p>
-      </div>
-
-      <div class="impact-card">
-        <h4>Faster Response</h4>
-        <p>Identify emerging community distress before it escalates into deeper crises.</p>
-      </div>
-
-      <div class="impact-card">
-        <h4>Deeper Understanding</h4>
-        <p>Move beyond numbers and discover the real stories and causes behind them.</p>
-      </div>
-
-      <div class="impact-card">
-        <h4>Greater Trust</h4>
-        <p>Show people that their voices matter, rebuilding trust between communities and leaders.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Final Emotional Section -->
-  <section class="final-emotional-section" id="listening">
-    <h2 class="dark-main-statement">
-      “Behind every number,<br>there is a human being.”
-    </h2>
-
-    <p class="dark-sub-statement">
-      Hear the story. Understand the need. Make a difference.
-    </p>
-
-    <div>
-      <a href="https://github.com/digimetateam-hash/project-vedathon" class="dark-cta-btn">
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <button class="story-walkthrough-btn" onclick="startStoryboardWalkthrough()">
+        ▶ Play 90s Walkthrough
+      </button>
+      <a href="#listening" class="btn btn-primary" style="min-height: 40px; padding: 0 1.25rem; font-size: 0.85rem;">
         Start Listening →
       </a>
     </div>
-  </section>
+  </header>
 
-  <!-- Footer -->
+  <main>
+    <!-- ==========================================================================
+         01 — OPENING / 0–5 detik (Visual Manusia Besar & Potongan Suara)
+         ========================================================================== -->
+    <section class="hero-section" id="opening">
+      <div class="container hero-content">
+        <span class="eyebrow">Human-Centered AI · VedaThon 2026</span>
+        
+        <h1 class="display-hero">
+          Behind every number,<br>
+          there is a <em style="color: var(--md-sys-color-primary);">human being.</em>
+        </h1>
+
+        <p class="body-large" style="margin: 1.5rem auto 2.5rem; max-width: 720px;">
+          HearMe turns human voices into insights people can understand and act upon.
+        </p>
+
+        <div>
+          <a href="#listening" class="btn btn-primary">START LISTENING →</a>
+        </div>
+      </div>
+
+      <!-- Human Silhouette & Floating Fragments Visual -->
+      <div class="container">
+        <div class="hero-visual-frame" aria-label="Large human silhouette surrounded by authentic voices gradually becoming data points">
+          <svg viewBox="0 0 980 480" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" fill="none">
+            <defs>
+              <radialGradient id="haloLight" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ffd5cc" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <circle cx="490" cy="240" r="185" fill="url(#haloLight)"/>
+            
+            <!-- Elegant Human Profile Silhouette -->
+            <g transform="translate(490, 240)">
+              <path d="M -42 -105 C -42 -145, 42 -145, 42 -105 C 42 -68, 28 -50, 24 -30 C 38 -15, 62 18, 80 85 C 90 120, 90 150, 90 170 L -90 170 C -90 150, -90 120, -80 85 C -62 18, -38 -15, -24 -30 C -28 -50, -42 -68, -42 -105 Z" 
+                    fill="#362826" opacity="0.94"/>
+            </g>
+
+            <!-- Organic Voice-Data Connection Filaments -->
+            <path d="M 140 180 C 260 120, 380 220, 490 200 C 600 180, 720 280, 840 220" stroke="#a73728" stroke-width="1.5" stroke-opacity="0.35" fill="none"/>
+            <path d="M 180 340 C 300 380, 400 240, 490 260 C 580 280, 680 140, 800 180" stroke="#a73728" stroke-width="1.5" stroke-dasharray="4 4" stroke-opacity="0.3" fill="none"/>
+          </svg>
+
+          <!-- Voice Fragments (Orbiting & Transforming) -->
+          <div class="voice-fragment-bubble vf-1">
+            <span class="pulse-dot"></span>
+            <span>“I'm worried about my child.”</span>
+          </div>
+
+          <div class="voice-fragment-bubble vf-2">
+            <span class="pulse-dot"></span>
+            <span>“Why doesn't anyone listen?”</span>
+          </div>
+
+          <div class="voice-fragment-bubble vf-3">
+            <span class="pulse-dot"></span>
+            <span>“Something needs to change.”</span>
+          </div>
+
+          <div class="voice-fragment-bubble vf-4">
+            <span class="pulse-dot"></span>
+            <span>“I just want someone to listen.”</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         02 — THE PROBLEM / 5–15 detik (Reduction & The Zoom Hook)
+         ========================================================================== */
+    -->
+    <section class="problem-section" id="problem">
+      <div class="container container-editorial">
+        <span class="eyebrow">The Real Problem</span>
+        <h2 class="display-section">
+          We have more data than ever.<br>
+          <em>But are we really listening?</em>
+        </h2>
+
+        <!-- The Cold Reduction Pipeline -->
+        <div class="data-reduction-pipeline">
+          <div class="pipeline-step-box">50,000 COMMENTS</div>
+          <span class="pipeline-arrow">↓</span>
+          <div class="pipeline-step-box">SPREADSHEET</div>
+          <span class="pipeline-arrow">↓</span>
+          <div class="pipeline-step-box">CHARTS</div>
+          <span class="pipeline-arrow">↓</span>
+          <div class="pipeline-step-box">DASHBOARD</div>
+        </div>
+
+        <div style="font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 3rem); font-style: italic; color: var(--md-sys-color-on-surface);">
+          “But what does it actually mean?”
+        </div>
+
+        <!-- The Emotional Hook (Zoomed Comment Back to Human) -->
+        <div class="hook-zoom-card">
+          <span style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--md-sys-color-primary); font-weight: 700;">
+            One Human Voice Zoomed In
+          </span>
+          <div class="hook-zoom-quote">
+            “I'm worried about my child.”
+          </div>
+          <p style="color: var(--md-sys-color-on-surface-variant); font-size: 1rem; line-height: 1.5;">
+            Suddenly, the number vanishes. A real human face emerges. A mother trying to provide medical assistance for her toddler. This is not another ticket; this is a person.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         03 — CHANGE THE QUESTION / 15–25 detik
+         ========================================================================== -->
+    <section id="reframe">
+      <div class="container container-editorial" style="text-align: center;">
+        <span class="eyebrow">Change The Question</span>
+        <h2 class="display-section">Don't just count the voices. Understand them.</h2>
+        <p class="body-large">See how HearMe transforms cold metrics into human empathy.</p>
+      </div>
+
+      <div class="container">
+        <div class="reframing-container">
+          <!-- Item 1 -->
+          <div class="reframe-case-row">
+            <div class="reframe-old-side">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #635754; font-weight: 600;">TRADITIONAL ANALYTICS</div>
+              <div style="font-size: 1.75rem; font-weight: 700; color: #a73728; margin: 0.5rem 0;">
+                Sentiment: 62% Negative
+              </div>
+              <div style="font-size: 0.85rem; color: #635754;">Static label based on keyword counting.</div>
+            </div>
+
+            <div class="reframe-new-side">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--md-sys-color-primary); font-weight: 700;">HEARME EMPATHY QUESTION</div>
+              <div style="font-family: var(--font-display); font-size: 1.6rem; color: var(--md-sys-color-primary); font-weight: 500; margin: 0.5rem 0;">
+                “Why are people feeling this way?”
+              </div>
+              <div style="font-size: 0.9rem; color: var(--md-sys-color-on-surface);">
+                Citizens are fearful of missing financial assistance deadlines due to repeating system timeouts.
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="reframe-case-row">
+            <div class="reframe-old-side">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #635754; font-weight: 600;">TRADITIONAL ANALYTICS</div>
+              <div style="font-size: 1.75rem; font-weight: 700; color: #475569; margin: 0.5rem 0;">
+                Topic: Food
+              </div>
+              <div style="font-size: 0.85rem; color: #635754;">Category tag: 412 mentions of meal services.</div>
+            </div>
+
+            <div class="reframe-new-side">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--md-sys-color-primary); font-weight: 700;">HEARME EMPATHY QUESTION</div>
+              <div style="font-family: var(--font-display); font-size: 1.6rem; color: var(--md-sys-color-primary); font-weight: 500; margin: 0.5rem 0;">
+                “What experiences are people having?”
+              </div>
+              <div style="font-size: 0.9rem; color: var(--md-sys-color-on-surface);">
+                Night-shift workers with medical dietary needs cannot find transparent meal labeling, forcing them to work hungry.
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="reframe-case-row">
+            <div class="reframe-old-side">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #635754; font-weight: 600;">TRADITIONAL ANALYTICS</div>
+              <div style="font-size: 1.75rem; font-weight: 700; color: #2563eb; margin: 0.5rem 0;">
+                10,245 Comments
+              </div>
+              <div style="font-size: 0.85rem; color: #635754;">Spike in inquiry volume across subdistricts.</div>
+            </div>
+
+            <div class="reframe-new-side">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--md-sys-color-primary); font-weight: 700;">HEARME EMPATHY QUESTION</div>
+              <div style="font-family: var(--font-display); font-size: 1.6rem; color: var(--md-sys-color-primary); font-weight: 500; margin: 0.5rem 0;">
+                “What are these people trying to tell us?”
+              </div>
+              <div style="font-size: 0.9rem; color: var(--md-sys-color-on-surface);">
+                Parents in cellular blackout zones are pleading for paper registration forms so their children won't lose their school spots.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         04 — HOW IT WORKS / 25–40 detik (Voice Journey)
+         ========================================================================== -->
+    <section class="problem-section" id="how-it-works">
+      <div class="container container-editorial" style="text-align: center;">
+        <span class="eyebrow">The Journey of a Voice</span>
+        <h2 class="display-section">From human voices to meaningful action.</h2>
+      </div>
+
+      <div class="container">
+        <div class="journey-timeline-grid">
+          <div class="journey-card">
+            <div class="journey-step-num">01 — LISTEN</div>
+            <h3 class="journey-title">Listen</h3>
+            <div class="journey-lead">First, we listen.</div>
+            <p class="journey-body">
+              Collecting raw, authentic human inputs across comments, feedback, public reports, stories, and opinions.
+            </p>
+          </div>
+
+          <div class="journey-card">
+            <div class="journey-step-num">02 — UNDERSTAND</div>
+            <h3 class="journey-title">Understand</h3>
+            <div class="journey-lead">Then, we understand.</div>
+            <p class="journey-body">
+              AI maps patterns, themes, emotional sentiment, unspoken concerns, and emerging systemic pain points.
+            </p>
+          </div>
+
+          <div class="journey-card">
+            <div class="journey-step-num">03 — CONNECT</div>
+            <h3 class="journey-title">Connect</h3>
+            <div class="journey-lead">Then we connect the dots.</div>
+            <p class="journey-body">
+              10,245 voices organize into collective patterns, themes, and narrative stories without losing human dignity.
+            </p>
+          </div>
+
+          <div class="journey-card">
+            <div class="journey-step-num">04 — ACT</div>
+            <h3 class="journey-title">Act</h3>
+            <div class="journey-lead">Finally, we act.</div>
+            <p class="journey-body">
+              Transforming cluster insights into human-centered recommendations that decision-makers can execute immediately.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         05 — THE HEART / 40–55 detik (Emotional Centerpiece)
+         ========================================================================== -->
+    <section class="heart-deep-section" id="the-heart">
+      <div class="container container-editorial">
+        <span class="eyebrow" style="color: #ffb4a8;">The Emotional Centerpiece</span>
+        <h2 class="display-section" style="color: #ffffff;">Every voice matters.</h2>
+        
+        <p style="font-family: var(--font-display); font-size: 1.5rem; color: #beb8b6; margin: 1.5rem 0 0; line-height: 1.6;">
+          A negative comment isn't just a negative score.<br>
+          A complaint isn't just another ticket.<br>
+          A statistic isn't just another number.<br><br>
+          <em style="color: #ffb4a8;">It may represent...</em>
+        </p>
+
+        <div class="stories-solemn-grid">
+          <div class="solemn-story-card">
+            <div class="story-character-title">A mother worried about her child</div>
+            <div class="story-character-quote">
+              “I refreshed the verification portal every morning for three weeks with trembling hands. My toddler needed nutrition supplies, and all I got was an automated ticket rejection.”
+            </div>
+            <div style="font-size: 0.85rem; color: #94a3b8;">
+              HearMe: Brings urgent maternal health to the forefront.
+            </div>
+          </div>
+
+          <div class="solemn-story-card">
+            <div class="story-character-title">A student afraid to speak</div>
+            <div class="story-character-quote">
+              “The exam submission system locked me out 5 minutes before the deadline. I didn't know who to call. I felt completely invisible in a university of twenty thousand.”
+            </div>
+            <div style="font-size: 0.85rem; color: #94a3b8;">
+              HearMe: Surfaces academic anxiety and portal barrier.
+            </div>
+          </div>
+
+          <div class="solemn-story-card">
+            <div class="story-character-title">A worker struggling to be heard</div>
+            <div class="story-character-quote">
+              “The automated shift algorithm assigned us back-to-back night shifts without 8 hours between them. We feel like gears in a clock, not human beings with families.”
+            </div>
+            <div style="font-size: 0.85rem; color: #94a3b8;">
+              HearMe: Highlights worker fatigue before accidents happen.
+            </div>
+          </div>
+
+          <div class="solemn-story-card">
+            <div class="story-character-title">A community asking for change</div>
+            <div class="story-character-quote">
+              “Our streetlights on Jl. Mawar have been dark for six months. Elderly neighbors and young daughters walk home in pitch black every evening, scared for their safety.”
+            </div>
+            <div style="font-size: 0.85rem; color: #94a3b8;">
+              HearMe: Bridges citizen safety directly to public works leaders.
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 3.5rem; font-family: var(--font-display); font-size: 1.6rem; font-style: italic; color: #ffffff;">
+          “HearMe brings those stories closer to the people who can do something about them.”
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         06 — AI WITH HUMANITY / 55–65 detik
+         ========================================================================== -->
+    <section id="ai-tech">
+      <div class="container container-editorial" style="text-align: center;">
+        <span class="eyebrow">Ethical Technology</span>
+        <h2 class="display-section">AI with humanity at the center.</h2>
+        <div style="font-family: var(--font-mono); font-size: 0.95rem; color: var(--md-sys-color-primary); font-weight: 700; margin-top: 0.75rem;">
+          VOICE → AI → UNDERSTANDING
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="ai-penta-grid">
+          <div class="ai-card">
+            <div style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: var(--md-sys-color-primary);">01 · NLP</div>
+            <h3 style="font-family: var(--font-display); font-size: 1.4rem; margin: 0.5rem 0;">Natural Language Processing</h3>
+            <p style="font-size: 0.9rem; color: var(--md-sys-color-on-surface-variant);">Understand what people actually say, recognizing dialect and conversational context.</p>
+          </div>
+
+          <div class="ai-card">
+            <div style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: var(--md-sys-color-primary);">02 · SENTIMENT</div>
+            <h3 style="font-family: var(--font-display); font-size: 1.4rem; margin: 0.5rem 0;">Sentiment Analysis</h3>
+            <p style="font-size: 0.9rem; color: var(--md-sys-color-on-surface-variant);">Understand how they genuinely feel — detecting fear, exhaustion, hope, and resolve.</p>
+          </div>
+
+          <div class="ai-card">
+            <div style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: var(--md-sys-color-primary);">03 · TOPICS</div>
+            <h3 style="font-family: var(--font-display); font-size: 1.4rem; margin: 0.5rem 0;">Topic & Theme Detection</h3>
+            <p style="font-size: 0.9rem; color: var(--md-sys-color-on-surface-variant);">Understand what they talk about beneath the surface complaints.</p>
+          </div>
+
+          <div class="ai-card">
+            <div style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: var(--md-sys-color-primary);">04 · SUMMARY</div>
+            <h3 style="font-family: var(--font-display); font-size: 1.4rem; margin: 0.5rem 0;">AI Summarization</h3>
+            <p style="font-size: 0.9rem; color: var(--md-sys-color-on-surface-variant);">Understand thousands of voices quickly without stripping human dignity.</p>
+          </div>
+
+          <div class="ai-card">
+            <div style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: var(--md-sys-color-primary);">05 · EMPATHY</div>
+            <h3 style="font-family: var(--font-display); font-size: 1.4rem; margin: 0.5rem 0;">Human-Centered Interpretation</h3>
+            <p style="font-size: 0.9rem; color: var(--md-sys-color-on-surface-variant);">Never lose the context behind the data, keeping real people in focus.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         07 — IMPACT / 65–75 detik
+         ========================================================================== -->
+    <section class="problem-section" id="impact">
+      <div class="container container-editorial" style="text-align: center;">
+        <span class="eyebrow">Real World Impact</span>
+        <h2 class="display-section">What happens when people are truly heard?</h2>
+      </div>
+
+      <div class="container">
+        <div class="impact-quad-grid">
+          <div class="impact-card">
+            <div class="impact-word">Better Decisions</div>
+            <p style="font-size: 0.9rem; color: var(--md-sys-color-on-surface-variant);">Grounded in real human experiences rather than spreadsheets.</p>
+          </div>
+
+          <div class="impact-card">
+            <div class="impact-word">Faster Response</div>
+            <p style="font-size: 0.9rem; color: var(--md-sys-color-on-surface-variant);">Spot emerging systemic issues before they become crises.</p>
+          </div>
+
+          <div class="impact-card">
+            <div class="impact-word">Deeper Understanding</div>
+            <p style="font-size: 0.9rem; color: var(--md-sys-color-on-surface-variant);">See beyond sterile numbers and discover living stories.</p>
+          </div>
+
+          <div class="impact-card">
+            <div class="impact-word">Greater Trust</div>
+            <p style="font-size: 0.9rem; color: var(--md-sys-color-on-surface-variant);">Show people that their voices genuinely shape decisions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         08 — SIGNATURE VISUAL / 75–85 detik
+         Points -> Patterns -> Themes -> Emotions -> Stories -> Action
+         ========================================================================== -->
+    <section id="signature-visual">
+      <div class="container container-editorial" style="text-align: center;">
+        <span class="eyebrow">Signature Animation</span>
+        <h2 class="display-section">Individual voices → collective understanding.</h2>
+        <p class="body-large">Watch how raw points reorganize into clarity for leaders.</p>
+      </div>
+
+      <div class="container">
+        <div class="signature-interactive-box">
+          <div class="state-toggle-row">
+            <button class="state-pill active" onclick="setAnimState('points')" id="pill-points">● Points (Voices)</button>
+            <button class="state-pill" onclick="setAnimState('patterns')" id="pill-patterns">● Patterns</button>
+            <button class="state-pill" onclick="setAnimState('themes')" id="pill-themes">● Themes</button>
+            <button class="state-pill" onclick="setAnimState('emotions')" id="pill-emotions">● Emotions</button>
+            <button class="state-pill" onclick="setAnimState('stories')" id="pill-stories">● Stories</button>
+            <button class="state-pill" onclick="setAnimState('action')" id="pill-action">● Action</button>
+          </div>
+
+          <canvas id="sigCanvas"></canvas>
+
+          <div style="display: flex; justify-content: space-between; margin-top: 1rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--md-sys-color-outline);">
+            <span id="stateNameDisplay">State: 10,245 Raw Human Voices</span>
+            <span id="stateDescriptionDisplay">Scattered individual inputs awaiting synthesis</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         09 — FINAL EMOTIONAL MOMENT / 85–95 detik
+         ========================================================================== -->
+    <section class="cinematic-dark-sanctuary" id="listening">
+      <div class="container container-editorial">
+        <div class="cinematic-hero-quote">
+          “Behind every number,<br>
+          there is a human being.”
+        </div>
+
+        <div class="cinematic-hero-sub">
+          Hear the story. Understand the need. Make a difference.
+        </div>
+
+        <div>
+          <a href="https://github.com/digimetateam-hash/project-vedathon" class="btn btn-primary" style="background: #e54b3c; padding: 1rem 2.5rem; font-size: 1rem; box-shadow: 0 0 30px rgba(229,75,60,0.5);">
+            START LISTENING →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       10 — ENDING / FOOTER
+       ========================================================================== -->
   <footer>
-    <div class="footer-brand">❤️ HearMe</div>
-    <div class="footer-tagline">Turning human voices into meaningful action.</div>
-    <div class="footer-links">
-      <a href="#problem">About</a>
-      <a href="#how-it-works">How It Works</a>
-      <a href="#technology">Technology</a>
-      <a href="#impact">Impact</a>
-      <a href="docs/security.md">Privacy & Safety</a>
-      <a href="https://github.com/digimetateam-hash/project-vedathon">Repository</a>
-    </div>
-    <div class="copyright">
-      © 2026 Digimeta Team. Built with heart for VedaThon.
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div style="font-size: 1.3rem; font-weight: 700; color: #ffffff; margin-bottom: 0.5rem;">
+            ♥ HearMe
+          </div>
+          <div style="font-size: 0.95rem; color: #beb8b6;">
+            Turning human voices into meaningful action.
+          </div>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="#opening">About</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#ai-tech">Technology</a></li>
+          <li><a href="#impact">Impact</a></li>
+          <li><a href="docs/security.md">Privacy</a></li>
+          <li><a href="https://github.com/digimetateam-hash/project-vedathon">Contact</a></li>
+        </ul>
+      </div>
+
+      <div style="text-align: center; margin: 2rem 0; font-family: var(--font-display); font-size: 1.15rem; font-style: italic; color: #ffffff;">
+        “We don't just analyze what people say. We help organizations understand what people are trying to say.”
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Digimeta Team. Built with heart for VedaThon.</div>
+        <div>Human-centered AI for a world that listens.</div>
+      </div>
     </div>
   </footer>
 
-  <!-- Interactive Scripts -->
+  <!-- Script for Signature Canvas & Storyboard Player -->
   <script>
-    // Particle to Human Silhouette Simulation Canvas
-    const canvas = document.getElementById('particleCanvas');
+    // Canvas Setup
+    const canvas = document.getElementById('sigCanvas');
     const ctx = canvas.getContext('2d');
     let width, height;
-    let particles = [];
-    const particleCount = 120;
 
     function resize() {
-      width = canvas.width = canvas.parentElement.clientWidth;
-      height = canvas.height = canvas.parentElement.clientHeight;
+      width = canvas.width = canvas.parentElement.clientWidth - 40;
+      height = canvas.height = 400;
     }
     window.addEventListener('resize', resize);
     resize();
 
+    const COUNT = 280;
+    let particles = [];
+    let activeState = 'points';
+
+    const centers = {
+      patterns: [
+        { x: 0.28, y: 0.4 }, { x: 0.72, y: 0.4 },
+        { x: 0.4, y: 0.75 }, { x: 0.6, y: 0.75 }
+      ],
+      themes: [
+        { x: 0.25, y: 0.5 }, { x: 0.5, y: 0.35 }, { x: 0.75, y: 0.5 }
+      ],
+      emotions: [
+        { x: 0.35, y: 0.5 }, { x: 0.65, y: 0.5 }
+      ],
+      stories: [
+        { x: 0.45, y: 0.48 }, { x: 0.55, y: 0.52 }
+      ],
+      action: [
+        { x: 0.5, y: 0.5 }
+      ]
+    };
+
     class Particle {
       constructor() {
-        this.reset();
-      }
-
-      reset() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.8;
-        this.vy = (Math.random() - 0.5) * 0.8;
-        this.radius = Math.random() * 2.5 + 1.2;
-        this.alpha = Math.random() * 0.6 + 0.2;
-        this.isRed = Math.random() > 0.65;
+        this.tx = this.x;
+        this.ty = this.y;
+        this.r = Math.random() * 2.5 + 1.8;
+        this.cluster = Math.floor(Math.random() * 4);
+        this.color = '#857370';
+      }
+
+      setState(st) {
+        if (st === 'points') {
+          this.tx = Math.random() * (width - 60) + 30;
+          this.ty = Math.random() * (height - 60) + 30;
+          this.color = '#857370';
+        } else if (st === 'patterns') {
+          const c = centers.patterns[this.cluster % centers.patterns.length];
+          this.tx = c.x * width + (Math.random() - 0.5) * 80;
+          this.ty = c.y * height + (Math.random() - 0.5) * 80;
+          this.color = '#6f5b2e';
+        } else if (st === 'themes') {
+          const c = centers.themes[this.cluster % centers.themes.length];
+          this.tx = c.x * width + (Math.random() - 0.5) * 70;
+          this.ty = c.y * height + (Math.random() - 0.5) * 70;
+          this.color = '#775651';
+        } else if (st === 'emotions') {
+          const c = centers.emotions[this.cluster % centers.emotions.length];
+          this.tx = c.x * width + (Math.random() - 0.5) * 60;
+          this.ty = c.y * height + (Math.random() - 0.5) * 60;
+          this.color = '#a73728';
+        } else if (st === 'stories') {
+          const c = centers.stories[this.cluster % centers.stories.length];
+          this.tx = c.x * width + (Math.random() - 0.5) * 50;
+          this.ty = c.y * height + (Math.random() - 0.5) * 50;
+          this.color = '#362826';
+        } else if (st === 'action') {
+          const c = centers.action[0];
+          this.tx = c.x * width + (Math.random() - 0.5) * 35;
+          this.ty = c.y * height + (Math.random() - 0.5) * 35;
+          this.color = '#a73728';
+        }
       }
 
       update() {
-        this.x += this.vx;
-        this.y += this.vy;
-
-        if (this.x < 0 || this.x > width) this.vx *= -1;
-        if (this.y < 0 || this.y > height) this.vy *= -1;
+        this.x += (this.tx - this.x) * 0.08;
+        this.y += (this.ty - this.y) * 0.08;
       }
 
       draw() {
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = this.isRed ? `rgba(230, 57, 70, ${this.alpha})` : `rgba(30, 41, 59, ${this.alpha * 0.5})`;
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
         ctx.fill();
       }
     }
 
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
+    for (let i = 0; i < COUNT; i++) particles.push(new Particle());
+
+    function setAnimState(st) {
+      activeState = st;
+      document.querySelectorAll('.state-pill').forEach(p => p.classList.remove('active'));
+      const activePill = document.getElementById('pill-' + st);
+      if (activePill) activePill.classList.add('active');
+
+      const descriptions = {
+        points: { name: "State 1: Raw Voice Points", desc: "10,245 individual voices floating in isolation" },
+        patterns: { name: "State 2: Patterns Detected", desc: "Clustering by recurring signals & conversational flow" },
+        themes: { name: "State 3: Themes Unlocked", desc: "Grouped into core human themes: Care, Safety, Education" },
+        emotions: { name: "State 4: Emotional Resonance", desc: "Distinguishing genuine fear and anxiety from simple bugs" },
+        stories: { name: "State 5: Human Stories Synthesized", desc: "Giving voices a human face for leadership to relate to" },
+        action: { name: "State 6: Meaningful Action", desc: "Actionable, compassionate decisions that solve real needs" }
+      };
+
+      document.getElementById('stateNameDisplay').textContent = descriptions[st].name;
+      document.getElementById('stateDescriptionDisplay').textContent = descriptions[st].desc;
+
+      particles.forEach(p => p.setState(st));
     }
 
-    function animate() {
+    function loop() {
       ctx.clearRect(0, 0, width, height);
 
-      // Connect nearby particles to simulate data network forming human connections
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < 85) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(230, 57, 70, ${0.12 * (1 - dist / 85)})`;
-            ctx.stroke();
+      if (activeState !== 'points') {
+        for (let i = 0; i < particles.length; i += 2) {
+          for (let j = i + 1; j < particles.length; j += 4) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            if (d < 40) {
+              ctx.strokeStyle = `rgba(167, 55, 40, ${0.15 * (1 - d / 40)})`;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
           }
         }
       }
@@ -1326,71 +1342,41 @@
         p.update();
         p.draw();
       });
-
-      requestAnimationFrame(animate);
+      requestAnimationFrame(loop);
     }
-    animate();
+    loop();
 
-    // Interactive Dashboard Comparison Toggle
-    const dashDemos = [
-      {
-        oldTitle: "Sentiment Analysis",
-        oldContent: `
-          <div style="font-size: 2.2rem; font-weight: 700; color: #dc2626;">62% Negative</div>
-          <div style="color: #64748b; font-size: 0.9rem; margin-top: 0.5rem;">Label: Unfavorable sentiment score based on keyword frequency.</div>
-        `,
-        newTitle: "HearMe: “Why are people feeling this way?”",
-        newContent: `
-          <div style="font-family: 'Lora', serif; font-size: 1.35rem; color: var(--coral-accent); font-weight: 600;">
-            “Why are people feeling this way?”
-          </div>
-          <div style="color: var(--text-dark); font-size: 0.95rem; margin-top: 0.75rem; line-height: 1.5;">
-            84% of frustrated citizens are experiencing repeated application timeouts right when entering their family verification documents. The anger stems from <b>fear of missing deadlines</b>, not dislike of the policy itself.
-          </div>
-        `
-      },
-      {
-        oldTitle: "Category Tagging",
-        oldContent: `
-          <div style="font-size: 2rem; font-weight: 700; color: #475569;">Topic: Food</div>
-          <div style="color: #64748b; font-size: 0.9rem; margin-top: 0.5rem;">Category: Cafeteria / Canteen Service Quality (Total: 412 entries)</div>
-        `,
-        newTitle: "HearMe: “What experiences are people having?”",
-        newContent: `
-          <div style="font-family: 'Lora', serif; font-size: 1.35rem; color: var(--coral-accent); font-weight: 600;">
-            “What experiences are people having?”
-          </div>
-          <div style="color: var(--text-dark); font-size: 0.95rem; margin-top: 0.75rem; line-height: 1.5;">
-            Diabetic and allergen-sensitive employees cannot find transparent meal labeling during evening shifts. They feel unsafe eating on campus and are forced to skip dinners during overtime.
-          </div>
-        `
-      },
-      {
-        oldTitle: "Volume Aggregation",
-        oldContent: `
-          <div style="font-size: 2.2rem; font-weight: 700; color: #2563eb;">10,245 Comments</div>
-          <div style="color: #64748b; font-size: 0.9rem; margin-top: 0.5rem;">Metrics: Volume spike detected (+42% week-over-week).</div>
-        `,
-        newTitle: "HearMe: “What are these people trying to tell us?”",
-        newContent: `
-          <div style="font-family: 'Lora', serif; font-size: 1.35rem; color: var(--coral-accent); font-weight: 600;">
-            “What are these people trying to tell us?”
-          </div>
-          <div style="color: var(--text-dark); font-size: 0.95rem; margin-top: 0.75rem; line-height: 1.5;">
-            Parents in rural subdistricts are pleading for paper-based alternative enrollment forms because local cellular towers experienced an outage. They are terrified their children won't be registered for school.
-          </div>
-        `
+    // Walkthrough Player (0-90s auto-scroll demo)
+    function startStoryboardWalkthrough() {
+      const stops = [
+        { id: 'opening', delay: 4000 },
+        { id: 'problem', delay: 6000 },
+        { id: 'reframe', delay: 7000 },
+        { id: 'how-it-works', delay: 7000 },
+        { id: 'the-heart', delay: 8000 },
+        { id: 'ai-tech', delay: 5000 },
+        { id: 'signature-visual', delay: 7000 },
+        { id: 'listening', delay: 4000 }
+      ];
+
+      let idx = 0;
+      function nextStop() {
+        if (idx >= stops.length) return;
+        const current = stops[idx];
+        const el = document.getElementById(current.id);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        
+        if (current.id === 'signature-visual') {
+          setTimeout(() => setAnimState('patterns'), 1000);
+          setTimeout(() => setAnimState('emotions'), 2500);
+          setTimeout(() => setAnimState('stories'), 4000);
+          setTimeout(() => setAnimState('action'), 5500);
+        }
+
+        idx++;
+        setTimeout(nextStop, current.delay);
       }
-    ];
-
-    function switchDashboardDemo(index) {
-      document.querySelectorAll('.tab-btn').forEach((b, i) => {
-        b.classList.toggle('active', i === index);
-      });
-
-      const demo = dashDemos[index];
-      document.getElementById('dash-old').innerHTML = demo.oldContent;
-      document.getElementById('dash-new').innerHTML = demo.newContent;
+      nextStop();
     }
   </script>
 </body>
