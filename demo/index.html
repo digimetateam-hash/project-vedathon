@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CyberSense — From Browser Compromise to Physical Impact</title>
-  <meta name="description" content="Detect the transition. Break the chain. Protect the physical world. Capability-aware cross-layer attack path framework.">
+  <title>CyberSense × Black Door — From Browser Compromise to Physical Impact</title>
+  <meta name="description" content="CyberSense detection engine and Black Door experimental lab provisioning testbed.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,10 +16,8 @@
       --bg-surface: #10141d;
       --bg-surface-elevated: #161c28;
       --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-focus: rgba(239, 68, 68, 0.5);
 
       --color-critical: #ef4444;
-      --color-critical-glow: rgba(239, 68, 68, 0.25);
       --color-warning: #f59e0b;
       --color-success: #10b981;
       --color-cyan: #06b6d4;
@@ -34,24 +32,12 @@
       --font-serif: 'Newsreader', Georgia, serif;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: var(--bg-base); color: var(--text-main); font-family: var(--font-sans); line-height: 1.5; min-height: 100vh; }
 
-    body {
-      background-color: var(--bg-base);
-      color: var(--text-main);
-      font-family: var(--font-sans);
-      line-height: 1.5;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-
-    /* Top Live HUD Header */
+    /* Top HUD Header */
     header {
-      background: rgba(16, 20, 29, 0.9);
+      background: rgba(16, 20, 29, 0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-subtle);
       padding: 0.85rem 2rem;
@@ -63,394 +49,130 @@
       z-index: 100;
     }
 
-    .brand-group {
+    .brand-group { display: flex; align-items: center; gap: 0.75rem; }
+    .brand-badge { background: var(--color-critical); color: #fff; font-weight: 800; font-size: 0.8rem; padding: 0.2rem 0.5rem; border-radius: 4px; font-family: var(--font-mono); }
+    .brand-title { font-weight: 700; font-size: 1.15rem; }
+    .brand-sub { font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono); }
+
+    .nav-tabs-pill {
       display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .brand-badge {
-      background: var(--color-critical);
-      color: #fff;
-      font-weight: 800;
-      font-size: 0.85rem;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      font-family: var(--font-mono);
-    }
-
-    .brand-title {
-      font-weight: 700;
-      font-size: 1.15rem;
-      letter-spacing: -0.01em;
-    }
-
-    .brand-subtitle {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-    }
-
-    .hud-metrics {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-    }
-
-    .hud-pill {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(255, 255, 255, 0.04);
-      padding: 0.35rem 0.75rem;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 3px;
       border-radius: 9999px;
       border: 1px solid var(--border-subtle);
     }
 
-    .dot-live {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--color-critical);
-      box-shadow: 0 0 8px var(--color-critical);
-      animation: blinkPulse 1.4s infinite;
+    .tab-toggle-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.4rem 1.1rem;
+      border-radius: 9999px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
     }
 
-    @keyframes blinkPulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
+    .tab-toggle-btn.active {
+      background: var(--color-cyan);
+      color: #000;
     }
 
-    /* Main Dashboard Layout */
+    /* Main Container */
     main {
       max-width: 1440px;
       margin: 0 auto;
       padding: 1.5rem 2rem;
-      display: grid;
-      grid-template-columns: 1fr 380px;
-      gap: 1.5rem;
     }
 
-    .dashboard-left {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .dashboard-right {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
+    .view-panel { display: none; }
+    .view-panel.active { display: block; }
 
     /* Cards */
-    .card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 1.5rem;
-      position: relative;
-    }
+    .card { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; position: relative; }
+    .card-critical { border-color: var(--color-critical); background: linear-gradient(180deg, rgba(239, 68, 68, 0.08) 0%, var(--bg-surface) 100%); box-shadow: 0 0 30px rgba(239, 68, 68, 0.15); }
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; }
+    .card-title { font-family: var(--font-mono); font-size: 0.88rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em; display: flex; align-items: center; gap: 0.5rem; }
 
-    .card-critical {
-      border-color: var(--color-critical);
-      background: linear-gradient(180deg, rgba(239, 68, 68, 0.08) 0%, var(--bg-surface) 100%);
-      box-shadow: 0 0 30px rgba(239, 68, 68, 0.15);
-    }
+    /* Alert Stats */
+    .alert-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.25rem; font-family: var(--font-mono); }
+    .alert-stat { background: rgba(0, 0, 0, 0.35); border: 1px solid var(--border-subtle); padding: 0.85rem; border-radius: 8px; }
+    .alert-label { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; margin-bottom: 0.25rem; }
+    .alert-val { font-size: 1.15rem; font-weight: 700; }
 
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 1.25rem;
-    }
+    /* Physical Reachability Bar */
+    .reachability-bar { display: flex; align-items: center; gap: 0.5rem; background: rgba(0, 0, 0, 0.4); padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid var(--border-subtle); font-family: var(--font-mono); font-size: 0.75rem; margin-bottom: 1.25rem; }
+    .reach-step { flex: 1; text-align: center; padding: 0.35rem 0.2rem; border-radius: 4px; background: rgba(255, 255, 255, 0.05); color: var(--text-dim); font-weight: 600; }
+    .reach-step.pass { background: rgba(245, 158, 11, 0.2); color: var(--color-warning); }
+    .reach-step.current { background: var(--color-critical); color: #fff; box-shadow: 0 0 12px var(--color-critical); }
 
-    .card-title {
-      font-family: var(--font-mono);
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    /* Attack Path Nodes */
+    .path-nodes-flow { display: flex; justify-content: space-between; align-items: center; background: rgba(0, 0, 0, 0.3); border-radius: 10px; padding: 1.75rem 1.25rem; margin: 1.5rem 0; border: 1px solid var(--border-subtle); }
+    .node-item { background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1rem; width: 175px; text-align: center; cursor: pointer; transition: all 0.2s; }
+    .node-item:hover { border-color: var(--color-cyan); transform: translateY(-2px); }
+    .node-item.breached { border-color: var(--color-critical); background: rgba(239, 68, 68, 0.1); }
+    .node-item.severed { border-color: var(--color-success); background: rgba(16, 185, 129, 0.1); opacity: 0.6; }
+    .node-name { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.25rem; }
+    .node-cap { font-size: 0.68rem; font-family: var(--font-mono); color: var(--text-muted); background: rgba(0, 0, 0, 0.3); padding: 2px 4px; border-radius: 4px; }
+    .node-connector { flex: 1; height: 2px; background: var(--color-critical); position: relative; margin: 0 -4px; box-shadow: 0 0 8px var(--color-critical); }
+    .conn-label { position: absolute; top: -18px; left: 50%; transform: translateX(-50%); font-family: var(--font-mono); font-size: 0.65rem; color: var(--color-warning); background: #000; padding: 1px 4px; border-radius: 3px; white-space: nowrap; }
 
-    /* Alert Banner Components */
-    .alert-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      margin-bottom: 1.25rem;
-      font-family: var(--font-mono);
-    }
+    /* Button Actions */
+    .btn-action { background: var(--color-critical); color: #fff; font-family: var(--font-mono); font-weight: 700; font-size: 0.85rem; padding: 0.8rem 1.5rem; border-radius: 6px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; transition: all 0.2s; }
+    .btn-action:hover { background: #dc2626; box-shadow: 0 0 20px rgba(239, 68, 68, 0.5); }
+    .btn-action.neutralized { background: var(--color-success); cursor: default; }
 
-    .alert-stat {
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid var(--border-subtle);
-      padding: 0.85rem;
-      border-radius: 8px;
-    }
+    /* 6 Pillars Grid for Black Door Lab */
+    .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1rem; }
+    .pillar-card { background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 1.25rem; transition: all 0.2s; }
+    .pillar-card:hover { border-color: var(--color-cyan); transform: translateY(-2px); }
+    .pillar-icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+    .pillar-title { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-main); }
+    .pillar-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 0.75rem; }
+    .pillar-btn { background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border-subtle); color: var(--text-main); font-family: var(--font-mono); font-size: 0.75rem; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer; }
+    .pillar-btn:hover { background: var(--color-cyan); color: #000; }
 
-    .alert-label {
-      font-size: 0.7rem;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      margin-bottom: 0.25rem;
-    }
+    /* Console logs */
+    .console-logs { background: #05070a; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1rem; font-family: var(--font-mono); font-size: 0.78rem; height: 210px; overflow-y: auto; line-height: 1.6; }
 
-    .alert-val {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .val-critical { color: var(--color-critical); }
-    .val-warning { color: var(--color-warning); }
-    .val-cyan { color: var(--color-cyan); }
-
-    /* Physical Reachability Meter */
-    .reachability-bar {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
-      border: 1px solid var(--border-subtle);
-      margin-bottom: 1.25rem;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-    }
-
-    .reach-step {
-      flex: 1;
-      text-align: center;
-      padding: 0.35rem 0.2rem;
-      border-radius: 4px;
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-dim);
-      font-weight: 600;
-      transition: all 0.3s;
-    }
-
-    .reach-step.active-pass {
-      background: rgba(245, 158, 11, 0.2);
-      color: var(--color-warning);
-    }
-
-    .reach-step.active-current {
-      background: var(--color-critical);
-      color: #fff;
-      box-shadow: 0 0 12px var(--color-critical);
-    }
-
-    /* Attack Path Graph (Visual Component) */
-    .graph-stage {
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid var(--border-subtle);
-      border-radius: 10px;
-      padding: 1.5rem;
-      position: relative;
-    }
-
-    .path-nodes-flow {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-      margin: 1.5rem 0;
-    }
-
-    .node-item {
-      background: var(--bg-surface-elevated);
-      border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      padding: 1rem;
-      width: 170px;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-      transition: all 0.3s;
-      cursor: pointer;
-    }
-
-    .node-item:hover, .node-item.selected {
-      border-color: var(--color-cyan);
-      box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
-      transform: translateY(-2px);
-    }
-
-    .node-item.node-breached {
-      border-color: var(--color-critical);
-      background: rgba(239, 68, 68, 0.1);
-    }
-
-    .node-item.node-severed {
-      border-color: var(--color-success);
-      background: rgba(16, 185, 129, 0.1);
-      opacity: 0.5;
-    }
-
-    .node-icon {
-      font-size: 1.5rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .node-name {
-      font-weight: 700;
-      font-size: 0.85rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .node-cap {
-      font-size: 0.7rem;
-      font-family: var(--font-mono);
-      color: var(--text-muted);
-      background: rgba(0, 0, 0, 0.3);
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
-
-    .node-connector {
-      flex: 1;
-      height: 2px;
-      background: var(--color-critical);
-      position: relative;
-      z-index: 1;
-      margin: 0 -5px;
-      box-shadow: 0 0 8px var(--color-critical);
-    }
-
-    .connector-label {
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--color-warning);
-      white-space: nowrap;
-      background: #000;
-      padding: 1px 5px;
-      border-radius: 3px;
-    }
-
-    /* Counterfactual Intervention Box */
-    .intervention-card {
-      background: var(--bg-surface-elevated);
-      border: 1px solid var(--border-subtle);
-      border-radius: 10px;
-      padding: 1.25rem;
-    }
-
-    .btn-action {
-      background: var(--color-critical);
-      color: #fff;
-      font-family: var(--font-mono);
-      font-weight: 700;
-      font-size: 0.85rem;
-      padding: 0.75rem 1.25rem;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      width: 100%;
-      transition: all 0.2s;
-    }
-
-    .btn-action:hover {
-      background: #dc2626;
-      box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
-    }
-
-    .btn-action.btn-neutralized {
-      background: var(--color-success);
-      cursor: default;
-    }
-
-    /* Evidence Chain Terminal Log */
-    .evidence-console {
-      background: #05070a;
-      border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      padding: 1rem;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      height: 230px;
-      overflow-y: auto;
-      line-height: 1.6;
-    }
-
-    .log-line {
-      display: flex;
-      gap: 0.75rem;
-    }
-
-    .log-time { color: var(--text-dim); }
-    .log-src { color: var(--color-cyan); }
-    .log-event { color: var(--text-main); }
-    .log-crit { color: var(--color-critical); font-weight: 700; }
-
-    /* Attack Story Narrative Box */
-    .story-narrative-box {
-      font-family: var(--font-serif);
-      font-size: 1.05rem;
-      line-height: 1.6;
-      font-style: italic;
-      color: #e2e8f0;
-      background: rgba(255, 255, 255, 0.03);
-      padding: 1.25rem;
-      border-left: 3px solid var(--color-cyan);
-      border-radius: 0 8px 8px 0;
-      margin-top: 1rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 1100px) {
-      main { grid-template-columns: 1fr; }
+    @media (max-width: 980px) {
+      .alert-grid, .pillars-grid { grid-template-columns: 1fr; }
       .path-nodes-flow { flex-direction: column; gap: 1rem; }
-      .node-connector { width: 2px; height: 30px; margin: -5px 0; }
-      .connector-label { top: 50%; left: 40px; transform: translateY(-50%); }
+      .node-connector { width: 2px; height: 30px; margin: -4px 0; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Realtime HUD -->
+  <!-- Top Realtime HUD Header -->
   <header>
     <div class="brand-group">
-      <span class="brand-badge">RESEARCH</span>
+      <span class="brand-badge">RESEARCH & LAB</span>
       <div>
-        <div class="brand-title">CYBERSENSE</div>
-        <div class="brand-subtitle">Cross-Layer Cyber-to-Physical Transition Framework</div>
+        <div class="brand-title">CYBERSENSE × BLACK DOOR</div>
+        <div class="brand-sub">Cross-Layer Detection Engine & 6-Pillar Experimental Lab</div>
       </div>
     </div>
 
-    <div class="hud-metrics">
-      <div class="hud-pill">
-        <span class="dot-live"></span>
-        <span>CORRELATOR: ACTIVE</span>
-      </div>
-      <div class="hud-pill">
-        <span>SESSION: <b style="color:var(--color-cyan);">#A81-9941</b></span>
-      </div>
-      <div class="hud-pill">
-        <span>TARGET: <b style="color:#fff;">Smart Actuator #03</b></span>
-      </div>
+    <!-- Dual View Switcher -->
+    <div class="nav-tabs-pill">
+      <button class="tab-toggle-btn active" onclick="switchView('cybersense')">
+        🛡️ CyberSense Defense Radar
+      </button>
+      <button class="tab-toggle-btn" onclick="switchView('blackdoor')">
+        🚪 Black Door Lab Console
+      </button>
     </div>
   </header>
 
   <main>
-    <!-- Left Column: Primary Attack Path & Alert -->
-    <div class="dashboard-left">
-
-      <!-- Kill-Chain Alert Card -->
+    <!-- ======================================================================
+         VIEW 1: CYBERSENSE DEFENSE RADAR (Detection & Counterfactual Engine)
+         ====================================================================== -->
+    <div id="view-cybersense" class="view-panel active">
+      <!-- Alert & Lead Time Header -->
       <div class="card card-critical" id="alertCard">
         <div class="card-header">
           <div>
@@ -469,278 +191,249 @@
 
         <div class="alert-grid">
           <div class="alert-stat">
-            <div class="alert-label">Transition State</div>
-            <div class="alert-val val-critical" id="valState">T4 · IoT Command</div>
+            <div class="alert-label">Transition Stage</div>
+            <div class="alert-val" style="color: var(--color-critical);" id="txtStage">T4 · IoT Command</div>
           </div>
           <div class="alert-stat">
             <div class="alert-label">Physical Impact Lead Time</div>
-            <div class="alert-val val-critical" id="valLeadTime">11.4s</div>
+            <div class="alert-val" style="color: var(--color-critical);" id="txtLeadTime">11.4s</div>
           </div>
           <div class="alert-stat">
             <div class="alert-label">Identity Continuity</div>
-            <div class="alert-val val-cyan">Verified (#A81)</div>
+            <div class="alert-val" style="color: var(--color-cyan);">Verified (#A81)</div>
           </div>
           <div class="alert-stat">
-            <div class="alert-label">Estimated Impact</div>
-            <div class="alert-val val-warning">Physical Breach</div>
+            <div class="alert-label">Physical Target</div>
+            <div class="alert-val" style="color: var(--color-warning);">Actuator #03 (Door)</div>
           </div>
         </div>
 
-        <!-- Physical Reachability Stage -->
         <div style="font-family: var(--font-mono); font-size: 0.75rem; margin-bottom: 0.5rem; color: var(--text-dim);">
           GAP #06 — PHYSICAL REACHABILITY EVALUATION
         </div>
         <div class="reachability-bar">
-          <div class="reach-step active-pass">NOT REACHABLE</div>
-          <div class="reach-step active-pass">POTENTIALLY REACHABLE</div>
-          <div class="reach-step active-pass">REACHABLE</div>
-          <div class="reach-step active-current" id="stepCurrent">CONTROL CAPABLE</div>
+          <div class="reach-step pass">NOT REACHABLE</div>
+          <div class="reach-step pass">POTENTIALLY REACHABLE</div>
+          <div class="reach-step pass">REACHABLE</div>
+          <div class="reach-step current" id="stepCap">CONTROL CAPABLE</div>
           <div class="reach-step" id="stepImpact">PHYSICAL IMPACT</div>
         </div>
       </div>
 
-      <!-- Capability-Aware Attack Graph (GAP #03) -->
+      <!-- Capability-Aware Attack Graph -->
       <div class="card">
         <div class="card-header">
-          <div class="card-title">
-            <span>🌐 CAPABILITY-AWARE ATTACK PATH (DYNAMIC GRAPH)</span>
-          </div>
-          <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim);">
-            Click node for forensics
-          </span>
+          <div class="card-title">🌐 CAPABILITY-AWARE ATTACK PATH (DYNAMIC GRAPH)</div>
+          <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim);">Evidence Chain Tracking</span>
         </div>
 
-        <div class="graph-stage">
-          <div class="path-nodes-flow">
-            <!-- Node 1: Browser -->
-            <div class="node-item node-breached" onclick="inspectNode('browser')">
-              <div class="node-icon">💻</div>
-              <div class="node-name">Browser Hook</div>
-              <div class="node-cap">Read local DOM</div>
-            </div>
+        <div class="path-nodes-flow">
+          <div class="node-item breached">
+            <div style="font-size:1.5rem;">💻</div>
+            <div class="node-name">BeEF Browser Hook</div>
+            <div class="node-cap">Read local DOM</div>
+          </div>
 
-            <div class="node-connector">
-              <span class="connector-label">Δt: +2.1s</span>
-            </div>
+          <div class="node-connector"><span class="conn-label">Δt: +2.1s</span></div>
 
-            <!-- Node 2: Session -->
-            <div class="node-item node-breached" onclick="inspectNode('session')">
-              <div class="node-icon">🔑</div>
-              <div class="node-name">Session #A81</div>
-              <div class="node-cap">Token context</div>
-            </div>
+          <div class="node-item breached">
+            <div style="font-size:1.5rem;">🔑</div>
+            <div class="node-name">Session #A81</div>
+            <div class="node-cap">Token context</div>
+          </div>
 
-            <div class="node-connector">
-              <span class="connector-label">Δt: +1.4s</span>
-            </div>
+          <div class="node-connector"><span class="conn-label">Δt: +1.4s</span></div>
 
-            <!-- Node 3: IoT Gateway -->
-            <div class="node-item node-breached" onclick="inspectNode('gateway')">
-              <div class="node-icon">📡</div>
-              <div class="node-name">IoT Gateway</div>
-              <div class="node-cap">Access device API</div>
-            </div>
+          <div class="node-item breached">
+            <div style="font-size:1.5rem;">📡</div>
+            <div class="node-name">IoT Gateway</div>
+            <div class="node-cap">Access device API</div>
+          </div>
 
-            <div class="node-connector" id="connectorMqtt">
-              <span class="connector-label">Δt: +3.2s</span>
-            </div>
+          <div class="node-connector" id="connMqtt"><span class="conn-label">Δt: +3.2s</span></div>
 
-            <!-- Node 4: MQTT Broker -->
-            <div class="node-item node-breached" id="nodeMqtt" onclick="inspectNode('mqtt')">
-              <div class="node-icon">⚙️</div>
-              <div class="node-name">MQTT Broker</div>
-              <div class="node-cap">Publish command</div>
-            </div>
+          <div class="node-item breached" id="nodeMqtt">
+            <div style="font-size:1.5rem;">⚙️</div>
+            <div class="node-name">MQTT Broker</div>
+            <div class="node-cap">Publish command</div>
+          </div>
 
-            <div class="node-connector" id="connectorActuator">
-              <span class="connector-label">Δt: +1.1s</span>
-            </div>
+          <div class="node-connector" id="connActuator"><span class="conn-label">Δt: +1.1s</span></div>
 
-            <!-- Node 5: Physical Actuator -->
-            <div class="node-item" id="nodeActuator" onclick="inspectNode('actuator')">
-              <div class="node-icon">🚪</div>
-              <div class="node-name">Actuator #03</div>
-              <div class="node-cap">Change phys state</div>
-            </div>
+          <div class="node-item" id="nodeActuator">
+            <div style="font-size:1.5rem;">🚪</div>
+            <div class="node-name">Actuator #03</div>
+            <div class="node-cap">Solenoid State</div>
           </div>
         </div>
 
-        <!-- Attack Story Reconstruction (GAP #14) -->
-        <div class="story-narrative-box" id="storyText">
-          “A compromised browser session (BeEF hook) accessed the internal IoT gateway at 172.28.0.3, obtained command publication capability through the MQTT interface on topic <code>home/security/door</code>, and reached the physical solenoid lock actuator 11.4 seconds before state transition.”
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Right Column: Counterfactual Defense & Evidence -->
-    <div class="dashboard-right">
-
-      <!-- Counterfactual Intervention Engine (GAP #09 & #10) -->
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">
-            <span>🛡️ OPTIMAL INTERVENTION</span>
+        <!-- Counterfactual Action Button -->
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; align-items: center; background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px;">
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--color-cyan); margin-bottom: 0.25rem;">
+              GAP #09 & #10 — COUNTERFACTUAL INTERVENTION ENGINE
+            </div>
+            <div style="font-size: 0.82rem; color: var(--text-muted);">
+              Surgically revokes MQTT Session #A81 to break the attack chain. <b>Availability Disruption: LOW (Zero downtime to benign sensors).</b>
+            </div>
           </div>
-          <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--color-success);">IES: 0.94</span>
-        </div>
-
-        <div class="intervention-card" style="margin-bottom: 1rem;">
-          <div style="font-size: 0.8rem; font-family: var(--font-mono); color: var(--text-dim); margin-bottom: 0.5rem;">
-            COUNTERFACTUAL SIMULATION:
-          </div>
-          <div style="font-size: 0.85rem; margin-bottom: 0.75rem;">
-            Blocking <b>MQTT Session #A81</b> breaks the attack path before reaching Actuator #03 while keeping the IoT Gateway online.
-          </div>
-          <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem;">
-            <span>Risk Reduction: <b>100%</b></span>
-            <span>Availability Cost: <b style="color:var(--color-success);">LOW</b></span>
-          </div>
-
-          <button class="btn-action" id="btnIntervene" onclick="triggerIntervention()">
+          <button class="btn-action" id="btnIntervene" onclick="executeIntervention()">
             ✂️ EXECUTE: BLOCK MQTT SESSION #A81
           </button>
         </div>
-
-        <div style="font-size: 0.75rem; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.4;">
-          Alternative: Blocking entire IoT Gateway yields 100% risk reduction but causes <b>CRITICAL availability disruption</b> for 14 benign sensors.
-        </div>
       </div>
+    </div>
 
-      <!-- Evidence Chain Forensics (GAP #11 & #13) -->
+    <!-- ======================================================================
+         VIEW 2: BLACK DOOR LAB CONSOLE (6 Pillars)
+         ====================================================================== -->
+    <div id="view-blackdoor" class="view-panel">
       <div class="card">
         <div class="card-header">
-          <div class="card-title">
-            <span>📜 MULTI-LAYER EVIDENCE CHAIN</span>
-          </div>
-          <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim);">6 Layers</span>
+          <div class="card-title">🚪 BLACK DOOR — EXPERIMENTAL TESTBED (6 PILLARS)</div>
+          <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-cyan);">Isolated Sandbox Environment</span>
         </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">
+          Environment orkestrasi serangan siber dari peramban web hingga aktuator IoT fisik yang menjadi sumber data eksperimen CyberSense.
+        </p>
 
-        <div class="evidence-console" id="consoleLogs">
-          <div class="log-line">
-            <span class="log-time">10:01:12</span>
-            <span class="log-src">[BROWSER]</span>
-            <span class="log-crit">Hook injected: XSS on Client #14</span>
+        <div class="pillars-grid">
+          <!-- Pillar 1: BeEF Lab -->
+          <div class="pillar-card">
+            <div class="pillar-icon">🌐</div>
+            <div class="pillar-title">1. BeEF Lab</div>
+            <div class="pillar-desc">Generator kompromi browser terkontrol via injeksi <code>hook.js</code> pada target web intranet.</div>
+            <button class="pillar-btn" onclick="addLabLog('BeEF Lab: Hook active on client 172.28.0.2:8080')">Inspect Hook</button>
           </div>
-          <div class="log-line">
-            <span class="log-time">10:01:14</span>
-            <span class="log-src">[SESSION]</span>
-            <span class="log-event">Session token #A81 extracted</span>
+
+          <!-- Pillar 2: IoT Security Lab -->
+          <div class="pillar-card">
+            <div class="pillar-icon">📡</div>
+            <div class="pillar-title">2. IoT Security Lab</div>
+            <div class="pillar-desc">Simulasi node IoT virtual: Broker MQTT (1883), Smart Lock REST API, dan sensor suhu.</div>
+            <button class="pillar-btn" onclick="addLabLog('IoT Lab: MQTT broker running on 172.28.0.4:1883')">Scan Topics</button>
           </div>
-          <div class="log-line">
-            <span class="log-time">10:01:15</span>
-            <span class="log-src">[WEB-API]</span>
-            <span class="log-event">XHR request to 172.28.0.3:8080/api</span>
+
+          <!-- Pillar 3: Robotic Provisioning -->
+          <div class="pillar-card">
+            <div class="pillar-icon">🤖</div>
+            <div class="pillar-title">3. Robotic Provisioning</div>
+            <div class="pillar-desc">Orkestrasi Docker API otomatis: deploy & teardown container terisolasi per sesi dalam < 25 detik.</div>
+            <button class="pillar-btn" onclick="addLabLog('Robotic Engine: Ephemeral container sandbox verified')">Verify Quota</button>
           </div>
-          <div class="log-line">
-            <span class="log-time">10:01:19</span>
-            <span class="log-src">[IOT-NET]</span>
-            <span class="log-crit">MQTT connect with auth token #A81</span>
+
+          <!-- Pillar 4: Auto Scoring -->
+          <div class="pillar-card">
+            <div class="pillar-icon">🎯</div>
+            <div class="pillar-title">4. Auto Scoring</div>
+            <div class="pillar-desc">Validasi flag otomatis berbasis webhook pasif tanpa penilaian manual penguji.</div>
+            <button class="pillar-btn" onclick="addLabLog('Auto Score: Flag VEDA{cpt_transition_mitigated} verified (+100 pts)')">Verify Flag</button>
           </div>
-          <div class="log-line">
-            <span class="log-time">10:01:20</span>
-            <span class="log-src">[TRANSITION]</span>
-            <span class="log-crit">T4 reached: Publish command topic</span>
+
+          <!-- Pillar 5: Dashboard -->
+          <div class="pillar-card">
+            <div class="pillar-icon">📊</div>
+            <div class="pillar-title">5. Dual Dashboard</div>
+            <div class="pillar-desc">Antarmuka ganda: Konsol penyerang/siswa + Radar pertahanan CyberSense waktu nyata.</div>
+            <button class="pillar-btn" onclick="switchView('cybersense')">Switch to Radar</button>
           </div>
-          <div class="log-line">
-            <span class="log-time">10:01:21</span>
-            <span class="log-src">[PREDICTION]</span>
-            <span class="log-event">Lead time: 11.4s until physical state change</span>
+
+          <!-- Pillar 6: Physical IoT Demo -->
+          <div class="pillar-card">
+            <div class="pillar-icon">🔌</div>
+            <div class="pillar-title">6. Physical IoT Demo</div>
+            <div class="pillar-desc">Integrasi kit fisik ESP32 + Modul Relay 12V untuk demonstrasi kunci pintu solenoid nyata.</div>
+            <button class="pillar-btn" onclick="togglePhysicalRelay()">Toggle Physical Lock</button>
           </div>
         </div>
       </div>
 
+      <!-- Live Testbed Console Logs -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📜 BLACK DOOR CONTAINER & SENSOR TELEMETRY</div>
+          <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim);">Live WebSocket Stream</span>
+        </div>
+        <div class="console-logs" id="labConsole">
+          <div>[SYSTEM] Black Door Lab Engine v1.2 initialized. Subnet: 172.28.0.0/24 (Isolated).</div>
+          <div>[BEEF] Hook established on victim session #A81 (Chrome 120 / macOS).</div>
+          <div>[GATEWAY] REST API probe detected from 172.28.0.2 -> 172.28.0.3:8080/api/v1/status.</div>
+          <div>[MQTT] Auth token #A81 registered on broker topic: home/security/door/cmd.</div>
+        </div>
+      </div>
     </div>
   </main>
 
   <script>
-    // Live Countdown Simulation for Lead Time
+    function switchView(viewName) {
+      document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-toggle-btn').forEach(b => b.classList.remove('active'));
+
+      if (viewName === 'cybersense') {
+        document.getElementById('view-cybersense').classList.add('active');
+        document.querySelectorAll('.tab-toggle-btn')[0].classList.add('active');
+      } else {
+        document.getElementById('view-blackdoor').classList.add('active');
+        document.querySelectorAll('.tab-toggle-btn')[1].classList.add('active');
+      }
+    }
+
     let leadTime = 11.4;
     let timerRunning = true;
 
-    const timerInterval = setInterval(() => {
+    const timer = setInterval(() => {
       if (!timerRunning) return;
       leadTime = Math.max(0, leadTime - 0.1);
-      document.getElementById('valLeadTime').textContent = leadTime.toFixed(1) + 's';
+      document.getElementById('txtLeadTime').textContent = leadTime.toFixed(1) + 's';
 
       if (leadTime === 0) {
         timerRunning = false;
-        clearInterval(timerInterval);
-        triggerPhysicalImpact();
+        clearInterval(timer);
+        document.getElementById('stepCap').className = 'reach-step pass';
+        document.getElementById('stepImpact').className = 'reach-step current';
+        document.getElementById('nodeActuator').className = 'node-item breached';
+        addLabLog('PHYSICAL IMPACT: Solenoid Relay triggered. Smart Door unlatched!');
       }
     }, 100);
 
-    function triggerIntervention() {
+    function executeIntervention() {
       timerRunning = false;
       const btn = document.getElementById('btnIntervene');
-      btn.className = 'btn-action btn-neutralized';
-      btn.innerHTML = '✅ ATTACK PATH BROKEN · PHYSICAL IMPACT PREVENTED';
+      btn.className = 'btn-action neutralized';
+      btn.innerHTML = '✅ ATTACK CHAIN BROKEN · PHYSICAL IMPACT PREVENTED';
 
-      // Sever Connector
-      document.getElementById('connectorMqtt').style.background = '#10b981';
-      document.getElementById('connectorMqtt').style.boxShadow = 'none';
-      document.getElementById('nodeMqtt').className = 'node-item node-severed';
+      document.getElementById('connMqtt').style.background = '#10b981';
+      document.getElementById('connMqtt').style.boxShadow = 'none';
+      document.getElementById('nodeMqtt').className = 'node-item severed';
 
-      // Update Alert Box
       const alertCard = document.getElementById('alertCard');
       alertCard.className = 'card';
       alertCard.style.borderColor = '#10b981';
-      alertCard.style.background = 'linear-gradient(180deg, rgba(16, 185, 129, 0.08) 0%, var(--bg-surface) 100%)';
-      alertCard.style.boxShadow = '0 0 30px rgba(16, 185, 129, 0.15)';
+      alertCard.style.boxShadow = '0 0 25px rgba(16, 185, 129, 0.15)';
+      alertCard.querySelector('.card-title').innerHTML = '<span style="color:#10b981;">🛡️ COUNTERFACTUAL INTERVENTION EXECUTED SUCCESSFULLY</span>';
 
-      alertCard.querySelector('.card-title').innerHTML = '<span style="color:#10b981;">🛡️ COUNTERFACTUAL INTERVENTION SUCCESSFUL</span>';
-      document.getElementById('valState').textContent = 'NEUTRALIZED';
-      document.getElementById('valState').className = 'alert-val';
-      document.getElementById('valState').style.color = '#10b981';
+      document.getElementById('txtStage').textContent = 'NEUTRALIZED';
+      document.getElementById('txtStage').style.color = '#10b981';
+      document.getElementById('txtLeadTime').textContent = 'FROZEN';
+      document.getElementById('txtLeadTime').style.color = '#10b981';
 
-      document.getElementById('valLeadTime').textContent = 'FROZEN';
-      document.getElementById('valLeadTime').className = 'alert-val';
-      document.getElementById('valLeadTime').style.color = '#10b981';
-
-      // Append Log
-      const consoleBox = document.getElementById('consoleLogs');
-      const logLine = document.createElement('div');
-      logLine.className = 'log-line';
-      logLine.innerHTML = `
-        <span class="log-time">${new Date().toLocaleTimeString()}</span>
-        <span class="log-src" style="color:#10b981;">[INTERVENE]</span>
-        <span class="log-event" style="color:#10b981; font-weight:700;">MQTT Session #A81 revoked. Actuator #03 preserved.</span>
-      `;
-      consoleBox.appendChild(logLine);
-      consoleBox.scrollTop = consoleBox.scrollHeight;
-
-      // Update Story
-      document.getElementById('storyText').innerHTML = `
-        “Optimal intervention executed: Session #A81 was surgically severed on the MQTT broker. Attack chain broken at transition point T4. Actuator #03 physical state preserved with 0 seconds downtime to surrounding sensor networks.”
-      `;
+      addLabLog('[CYBERSENSE] Counterfactual Intervention: MQTT Session #A81 dropped. Attack path severed.');
     }
 
-    function triggerPhysicalImpact() {
-      document.getElementById('stepCurrent').className = 'reach-step active-pass';
-      document.getElementById('stepImpact').className = 'reach-step active-current';
-      document.getElementById('nodeActuator').className = 'node-item node-breached';
-      
-      const consoleBox = document.getElementById('consoleLogs');
-      const logLine = document.createElement('div');
-      logLine.className = 'log-line';
-      logLine.innerHTML = `
-        <span class="log-time">${new Date().toLocaleTimeString()}</span>
-        <span class="log-src" style="color:#ef4444;">[IMPACT]</span>
-        <span class="log-crit">Actuator #03 solenoid unlatched. Physical state changed!</span>
-      `;
-      consoleBox.appendChild(logLine);
+    function addLabLog(msg) {
+      const consoleBox = document.getElementById('labConsole');
+      const line = document.createElement('div');
+      line.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+      line.style.color = '#06b6d4';
+      consoleBox.appendChild(line);
       consoleBox.scrollTop = consoleBox.scrollHeight;
     }
 
-    function inspectNode(nodeKey) {
-      const details = {
-        browser: "Node: Browser Hook | Layer: Client DOM | Privilege: Unprivileged | Capability: Read local context & trigger intranet HTTP requests.",
-        session: "Node: Session Token #A81 | Layer: Identity | Privilege: Authenticated User | Capability: Replay credentials across microservices.",
-        gateway: "Node: IoT Gateway (172.28.0.3) | Layer: Web/API | Privilege: Operator API | Capability: Access MQTT broker internal port 1883.",
-        mqtt: "Node: MQTT Broker | Layer: IoT Network | Privilege: Topic Publisher | Capability: Emit commands to topic home/security/door.",
-        actuator: "Node: Smart Actuator #03 | Layer: Physical CPS | Target: Relay Solenoid | Capability: Alter physical latch state (Door Open)."
-      };
-      alert(details[nodeKey]);
+    let relayLocked = true;
+    function togglePhysicalRelay() {
+      relayLocked = !relayLocked;
+      const status = relayLocked ? "LOCKED (12V High)" : "UNLOCKED (12V Low)";
+      addLabLog(`Physical Hardware Demo: ESP32 Relay Solenoid is now ${status}`);
     }
   </script>
 </body>
