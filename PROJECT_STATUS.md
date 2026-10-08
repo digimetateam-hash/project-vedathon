@@ -1,23 +1,24 @@
-# Project Status — HearMe (VedaThon 2026)
+# Project Status — CyberSense (VedaThon 2026)
 
-Status Proyek: **Active Development & Prototype Ready**  
-Motto: *"Behind every number is a human story waiting to be heard."*
+Status Proyek: **Active Development & Experimental Validation**  
+Motto: *"Detect the transition. Break the chain. Protect the physical world."*
 
 ---
 
-## 📋 Fitur & Status Implementasi
+## 📋 Research & Implementation Milestones
 
-| Modul / Komponen | Status | Keterangan |
+| Komponen / Milestone | Status | Catatan Validasi |
 | :--- | :---: | :--- |
-| **Konsep & Narasi Emosional (HearMe)** | ✅ Selesai | Narasi *human-centered AI* terstruktur penuh |
-| **Interactive Web Demo (`demo/index.html`)** | ✅ Selesai | Canvas transformasi data-ke-manusia, diff dashboard, off-white UI |
-| **Dokumentasi VedaThon (`docs/`)** | ✅ Selesai | Problem Statement, Metodologi, Arsitektur, User Flow, Security |
-| **CI & GitHub Pages Workflow (`.github/`)** | ✅ Selesai | Otomatisasi deploy demo interaktif ke GitHub Pages |
-| **AI Emotion & Theme Parsing Engine** | 🟡 Dalam Pengembangan | Pipeline ekstraksi cerita berbasis Google Gemini |
-| **Multi-Channel Voice Ingestion API** | 🟡 Dalam Pengembangan | Agregator input aduan publik & survei |
+| **Problem Statement & 15 Gaps Formulation** | ✅ Selesai | Dirumuskan berdasarkan analisis literatur 2024–2026 |
+| **Cross-Layer Telemetry Normalizer** | ✅ Selesai | Skema gabungan HTTP, MQTT, Syslog, dan Sensor State |
+| **Interactive Research Dashboard (`demo/index.html`)** | ✅ Selesai | Menampilkan Attack Path, Lead Time, & Counterfactual Engine |
+| **BeEF Controlled Browser Hub** | ✅ Selesai | Generator kondisi awal kompromi browser terkontrol |
+| **Capability-Aware Attack Graph Engine** | 🟡 Dalam Pengujian | Algoritma perambatan kapabilitas antar simpul |
+| **CPT-IoT Benchmark Dataset Preparation** | 🟡 Dalam Pengujian | Pelabelan STAGE_0 s.d. STAGE_5 untuk skenario A–F |
+| **Counterfactual Intervention Optimizer** | 🟡 Dalam Pengujian | Pengujian *Intervention Efficiency Score* pada broker MQTT |
 
 ---
 
-## 🎯 Fokus Selanjutnya
-1. Pengujian integrasi prompt Gemini 1.5 Pro untuk menghasilkan ringkasan arketipe cerita empati.
-2. Penyelarasan skema database vector (pgvector) untuk klasterisasi semantik suara manusia.
+## 🎯 Target Pengujian Selanjutnya
+1. Pengukuran presisi *Physical Impact Lead Time* pada skenario E dan F.
+2. Pengujian perbandingan terhadap 8 baseline (B1–B8).

@@ -1,64 +1,78 @@
-# System Architecture — Black Door
+# System Architecture — CyberSense
 
-## 1. Arsitektur Tingkat Tinggi (High-Level Architecture)
-
-Platform **Black Door** dibangun menggunakan pola arsitektur modular yang memisahkan antara *Control Plane* (Frontend Dashboard, API Gateway, Evaluator) dan *Execution Plane* (Robotic Provisioning Sandbox).
+## 1. High-Level Architecture & Pipeline
 
 ```
-                      +-----------------------------+
-                      |   Client Web Browser        |
-                      |   (Next.js / React UI)      |
-                      +--------------+--------------+
-                                     |
-                          HTTPS / WSS (Port 443)
-                                     |
-                                     v
-                      +-----------------------------+
-                      |       API Gateway           |
-                      |   (FastAPI / Express.js)    |
-                      +--------------+--------------+
-                                     |
-              +----------------------+----------------------+
-              |                      |                      |
-              v                      v                      v
-    +-------------------+  +-------------------+  +-------------------+
-    | User & Scoring DB |  | Robotic Engine    |  | AI Socratic Agent |
-    | (PostgreSQL)      |  | (Docker SDK/API)  |  | (Gemini / Claude) |
-    +-------------------+  +---------+---------+  +-------------------+
-                                     |
-                        Docker Socket / Unix Socket
-                                     |
-                                     v
-    +-----------------------------------------------------------------+
-    |                  ISOLATED LAB SANDBOX NETWORK                   |
-    |                                                                 |
-    |  +----------------------------+   +--------------------------+  |
-    |  | Browser Target Node        |   | Virtual IoT Node         |  |
-    |  | - BeEF Control Service     |   | - Smart Lock (HTTP/REST) |  |
-    |  | - Vulnerable Web (XSS/SQLi)|   | - IP Cam (RTSP/Web stream)| |
-    |  +----------------------------+   | - Smart Light (MQTT)     |  |
-    |                                   +--------------------------+  |
-    +-----------------------------------------------------------------+
+           +-----------------------------------------------+
+           |               TELEMETRY STREAM                |
+           |  (Browser DOM, HTTP Access, MQTT, Sensors)    |
+           +-----------------------+-----------------------+
+                                   |
+                                   v
+           +-----------------------------------------------+
+           |            TELEMETRY NORMALIZATION            |
+           |   Unified Schema across HTTP, MQTT, Syslog    |
+           +-----------------------+-----------------------+
+                                   |
+                                   v
+           +-----------------------------------------------+
+           |        IDENTITY & TEMPORAL CORRELATION        |
+           |      Session Stitching, Source Flow Match     |
+           +-----------------------+-----------------------+
+                                   |
+                                   v
+           +-----------------------------------------------+
+           |         CAPABILITY-AWARE ATTACK GRAPH         |
+           | Nodes = Assets, Edges = Gained Capabilities   |
+           +-----------------------+-----------------------+
+                                   |
+                                   v
+           +-----------------------------------------------+
+           |         PHYSICAL REACHABILITY EVALUATION      |
+           |   Dynamic Path Finding to Target Actuators    |
+           +-----------------------+-----------------------+
+                                   |
+                                   v
+           +-----------------------------------------------+
+           |    CPT TRANSITION & EARLY WARNING ENGINE      |
+           |     Computes Physical Impact Lead Time        |
+           +-----------------------+-----------------------+
+                                   |
+                                   v
+           +-----------------------------------------------+
+           |      COUNTERFACTUAL INTERVENTION ENGINE       |
+           |  Optimal Break Point (Security vs Uptime)     |
+           +-----------------------+-----------------------+
+                                   |
+                                   v
+           +-----------------------------------------------+
+           |         EXPLAINABLE FORENSIC REPORT           |
+           |        Interactive Dashboard Alert UI         |
+           +-----------------------------------------------+
 ```
 
 ---
 
-## 2. Komponen Utama
+## 2. Core Modules Breakdown
 
-### A. Frontend Dashboard
-- **Teknologi:** React / Next.js dengan antarmuka modern, visualisasi grafis topologi jaringan, dan console terminal interaktif.
-- **Komunikasi:** REST API untuk operasi CRUD dan WebSockets untuk streaming status log kontainer dan event realtime.
+### A. Telemetry Normalizer
+Mengonversi format log yang heterogen ke dalam skema standar CyberSense:
+- **Browser Event:** Client IP, User-Agent, DOM Hook payload, Timestamp.
+- **API Request:** Method, URI, Session Token, Header Fingerprint.
+- **IoT Network:** Protocol (MQTT/HTTP), Topic, Payload Size, QoS.
+- **Physical Sensor:** Actuator ID, State Change (Open/Closed), Current Draw.
 
-### B. Backend & Robotic Provisioning Engine
-- **Teknologi:** Python (FastAPI) terintegrasi langsung dengan Docker Engine API.
-- **Tanggung Jawab:**
-  - Membuat dan menghapus jaringan bridge privat per-sesi.
-  - Men-spin up container simulasi secara instan (< 25 detik).
-  - Mengelola resource limit (CPU, Memory) dan timer auto-teardown.
+### B. Identity & Temporal Correlator
+Mengatasi **GAP #4 & #5** dengan melacak kesinambungan sesi (`session_id`) yang berpindah dari browser web ke request API lokal dan topik MQTT dalam jendela waktu kausal ($\Delta t$).
 
-### C. Target Lab Environment
-- **Modul BeEF:** Container berisi target rentan (OWASP Juice Shop / DVWA) dan instans BeEF terisolasi.
-- **Modul IoT Virtual:** Simulasi node IoT berbasis container ringan yang mengekspos endpoint API rentan dan broker MQTT lokal.
+### C. Capability-Aware Attack Graph Generator
+Menggantikan graph statis dengan graph transisi kapabilitas:
+- Node $N_1$ (Browser) $\xrightarrow{\text{Cap: Read local context}}$ Node $N_2$ (Session)
+- Node $N_2$ (Session) $\xrightarrow{\text{Cap: Authenticated API call}}$ Node $N_3$ (Gateway)
+- Node $N_3$ (Gateway) $\xrightarrow{\text{Cap: Publish command}}$ Node $N_4$ (Broker)
+- Node $N_4$ (Broker) $\xrightarrow{\text{Cap: Toggle physical solenoid}}$ Node $N_5$ (Actuator #03)
 
-### D. AI Guided Mentor
-- Menggunakan LLM terintegrasi via RAG untuk mendampingi peserta membedah alur eksploitasi dan remediasi tanpa membocorkan flag secara instan.
+### D. Counterfactual Intervention Engine
+Mengevaluasi titik pemutusan (*cut point*) pada attack graph:
+$$\text{Efficiency Score} = \frac{\Delta \text{Risk Reduction}}{\text{Operational Disruption Cost}}$$
+Sistem secara otomatis merekomendasikan intervensi dengan *disruption* paling rendah (misal: memblokir token sesi tertentu pada MQTT broker, bukan mematikan seluruh IoT Gateway).
