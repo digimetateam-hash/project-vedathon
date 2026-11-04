@@ -1,0 +1,199 @@
+{
+  "N": 300,
+  "scenarios": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+  ],
+  "rows": [
+    {
+      "id": "B1",
+      "label": "Network-only (Suricata/Snort rules)",
+      "precision": 0.6369426751592356,
+      "recall": 0.23529411764705882,
+      "f1": 0.34364261168384885,
+      "fpr": 0.015794942847246276,
+      "lead_mean": 2.6964501502413154,
+      "lead_sd": 0.41086407844497896,
+      "lead_lo": 2.6635741769442336,
+      "lead_hi": 2.729326123538397,
+      "lead_median": 2.6616475322812647,
+      "latency": 4.633903901401981,
+      "prevented_pct": 95.33333333333334,
+      "mean_warn_stage": 3,
+      "n_lead": 600
+    },
+    {
+      "id": "B2",
+      "label": "IoT-only anomaly (MQTT autoencoder)",
+      "precision": 0.644468313641246,
+      "recall": 0.23529411764705882,
+      "f1": 0.3447285262855501,
+      "fpr": 0.015286918369703268,
+      "lead_mean": 1.5918400270980022,
+      "lead_sd": 0.2906769914425105,
+      "lead_lo": 1.5685810236706197,
+      "lead_hi": 1.6150990305253847,
+      "lead_median": 1.5983568091756224,
+      "latency": 5.722338969881665,
+      "prevented_pct": 8.166666666666666,
+      "mean_warn_stage": 4,
+      "n_lead": 600
+    },
+    {
+      "id": "B3",
+      "label": "Network + sensor fusion (no identity)",
+      "precision": 0.6406833956219968,
+      "recall": 0.47058823529411764,
+      "f1": 0.5426181324892607,
+      "fpr": 0.031081861216949544,
+      "lead_mean": 2.6964501502413154,
+      "lead_sd": 0.41086407844497896,
+      "lead_lo": 2.6635741769442336,
+      "lead_hi": 2.729326123538397,
+      "lead_median": 2.6616475322812647,
+      "latency": 4.633903901401981,
+      "prevented_pct": 95.33333333333334,
+      "mean_warn_stage": 3,
+      "n_lead": 600
+    },
+    {
+      "id": "B4",
+      "label": "Static attack graph (CVE map)",
+      "precision": 0.644468313641246,
+      "recall": 0.23529411764705882,
+      "f1": 0.3447285262855501,
+      "fpr": 0.015286918369703268,
+      "lead_mean": 1.5918400270980022,
+      "lead_sd": 0.2906769914425105,
+      "lead_lo": 1.5685810236706197,
+      "lead_hi": 1.6150990305253847,
+      "lead_median": 1.5983568091756224,
+      "latency": 5.722338969881665,
+      "prevented_pct": 8.166666666666666,
+      "mean_warn_stage": 4,
+      "n_lead": 600
+    },
+    {
+      "id": "B5",
+      "label": "Dynamic attack graph (no capability)",
+      "precision": 0.7911883338504498,
+      "recall": 1.0,
+      "f1": 0.8834228304174605,
+      "fpr": 0.031081861216949544,
+      "lead_mean": 5.916866162138325,
+      "lead_sd": 0.935724119362267,
+      "lead_lo": 5.841992638811536,
+      "lead_hi": 5.991739685465113,
+      "lead_median": 5.903658712409264,
+      "latency": 0.0,
+      "prevented_pct": 100.0,
+      "mean_warn_stage": 2,
+      "n_lead": 600
+    },
+    {
+      "id": "B6",
+      "label": "CyberSense w/o capability layer (ablation)",
+      "precision": 0.7911883338504498,
+      "recall": 1.0,
+      "f1": 0.8834228304174605,
+      "fpr": 0.031081861216949544,
+      "lead_mean": 5.916866162138325,
+      "lead_sd": 0.935724119362267,
+      "lead_lo": 5.841992638811536,
+      "lead_hi": 5.991739685465113,
+      "lead_median": 5.903658712409264,
+      "latency": 0.0,
+      "prevented_pct": 100.0,
+      "mean_warn_stage": 2,
+      "n_lead": 600
+    },
+    {
+      "id": "B7",
+      "label": "CyberSense w/o browser evidence (ablation)",
+      "precision": 1.0,
+      "recall": 0.7058823529411765,
+      "f1": 0.8275862068965517,
+      "fpr": 0.0,
+      "lead_mean": 5.916866162138325,
+      "lead_sd": 0.935724119362267,
+      "lead_lo": 5.841992638811536,
+      "lead_hi": 5.991739685465113,
+      "lead_median": 5.903658712409264,
+      "latency": 1.3916416070740523,
+      "prevented_pct": 100.0,
+      "mean_warn_stage": 2,
+      "n_lead": 600
+    },
+    {
+      "id": "B8",
+      "label": "CyberSense full system (proposed)",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "fpr": 0.0,
+      "lead_mean": 5.916866162138325,
+      "lead_sd": 0.935724119362267,
+      "lead_lo": 5.841992638811536,
+      "lead_hi": 5.991739685465113,
+      "lead_median": 5.903658712409264,
+      "latency": 0.0,
+      "prevented_pct": 100.0,
+      "mean_warn_stage": 2,
+      "n_lead": 600
+    }
+  ],
+  "wilcoxon": {
+    "B1": {
+      "stat": 0.0,
+      "p": 5.978238429493547e-100,
+      "n": 600,
+      "identical": false
+    },
+    "B2": {
+      "stat": 0.0,
+      "p": 5.978238429493547e-100,
+      "n": 600,
+      "identical": false
+    },
+    "B3": {
+      "stat": 0.0,
+      "p": 5.978238429493547e-100,
+      "n": 600,
+      "identical": false
+    },
+    "B4": {
+      "stat": 0.0,
+      "p": 5.978238429493547e-100,
+      "n": 600,
+      "identical": false
+    },
+    "B5": {
+      "stat": 0.0,
+      "p": NaN,
+      "n": 600,
+      "identical": true
+    },
+    "B6": {
+      "stat": 0.0,
+      "p": NaN,
+      "n": 600,
+      "identical": true
+    },
+    "B7": {
+      "stat": 0.0,
+      "p": NaN,
+      "n": 600,
+      "identical": true
+    }
+  },
+  "ies": {
+    "block_session": 0.9333333333333333,
+    "shutdown_gateway": 0.06666666666666665,
+    "a_loss_block": 0.06666666666666667,
+    "a_loss_shutdown": 0.9333333333333333
+  }
+}
